@@ -21,14 +21,20 @@ module.exports = function(grunt) {
                 target: 'es5'
             }
         }
+    },
+    watch: {
+          files: 'src/ts/**/*.ts',
+          tasks: ['typescript']
     }
   });
 
   // Load the plugin that provides the "uglify" task.
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-typescript');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['uglify']);
+  grunt.registerTask('default', ['watch']);
+  grunt.registerTask('build', ['typescript', 'uglify']);
 
 };
