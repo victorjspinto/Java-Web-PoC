@@ -1,0 +1,25 @@
+{
+  "name": "javawebpoc-html",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "~2.3.2",
+    "jquery": "~1.8.3"
+  },
+  
+  "exportsOverride": {
+    "bootstrap-sass": {
+      "js": "js/*.js",
+      "scss": "lib/*.scss",
+      "img": "img/*.png"
+    },
+    "requirejs": {
+      "js": "require.js"
+    }
+  },
+  
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components"
+  ]
+}
