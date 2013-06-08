@@ -1,40 +1,34 @@
-module.exports = function (grunt) {
-    grunt.loadNpmTasks('grunt-typescript');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-connect');
-    grunt.loadNpmTasks('grunt-open');
- 
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        connect: {
-            server: {
-                options: {
-                    port: 8080,
-                    base: './'
-                }
-            }
-        },
-        typescript: {
-            base: {
-                src: ['lib/**/*.ts'],
-                dest: 'js/PixelVisionJSDemos.js',
-                options: {
-                    module: 'amd',
-                    target: 'es5'
-                }
-            }
-        },
-        watch: {
-            files: '**/*.ts',
-            tasks: ['typescript']
-        },
-        open: {
-            dev: {
-                path: 'http://localhost:8080/index.html'
+module.exports = function(grunt) {
+
+  // Project configuration.
+  grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
+    uglify: {
+      options: {
+        banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+      },
+      build: {
+        src: 'src/ts/**/*.js',
+        dest: 'build/app.min.js'
+      }
+    },
+    typescript: {
+        base: {
+            src: ['src/ts/**/*.ts'],
+            //dest: 'js/PixelVisionJSDemos.js',
+            options: {
+                module: 'amd',
+                target: 'es5'
             }
         }
-    });
- 
-    grunt.registerTask('default', ['connect', 'open', 'watch']);
- 
-}
+    }
+  });
+
+  // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-typescript');
+
+  // Default task(s).
+  grunt.registerTask('default', ['uglify']);
+
+};
