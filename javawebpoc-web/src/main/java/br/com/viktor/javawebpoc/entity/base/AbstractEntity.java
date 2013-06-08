@@ -1,7 +1,16 @@
 package br.com.viktor.javawebpoc.entity.base;
 
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+@MappedSuperclass
 public class AbstractEntity {
 
+	@Id
+	@Generated(value=GenerationTime.INSERT)
 	private Long id;
 
 	public Long getId() {
@@ -11,5 +20,4 @@ public class AbstractEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-
 }
