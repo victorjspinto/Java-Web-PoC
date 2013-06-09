@@ -71,20 +71,47 @@
       <DependentUpon>appConfig.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="src\config\appConfig.ts" />
+    <Content Include="src\config\appConfig.min.js">
+      <DependentUpon>appConfig.ts</DependentUpon>
+    </Content>
+    <Content Include="src\controller\StudentListController.js">
+      <DependentUpon>StudentListController.ts</DependentUpon>
+    </Content>
+    <Content Include="src\controller\StudentListController.min.js">
+      <DependentUpon>StudentListController.ts</DependentUpon>
+    </Content>
     <Content Include="src\controller\StudentListController.ts" />
     <Content Include="src\entity\base\BaseEntity.js">
+      <DependentUpon>BaseEntity.ts</DependentUpon>
+    </Content>
+    <Content Include="src\entity\base\BaseEntity.min.js">
       <DependentUpon>BaseEntity.ts</DependentUpon>
     </Content>
     <Content Include="src\entity\Student.js">
       <DependentUpon>Student.ts</DependentUpon>
     </Content>
+    <Content Include="src\entity\Student.min.js">
+      <DependentUpon>Student.ts</DependentUpon>
+    </Content>
     <Content Include="src\service\contract\base\BaseCrudService.js">
+      <DependentUpon>CrudServiceContract.ts</DependentUpon>
+    </Content>
+    <Content Include="src\service\contract\base\CrudServiceContract.js">
+      <DependentUpon>CrudServiceContract.ts</DependentUpon>
+    </Content>
+    <Content Include="src\service\contract\base\CrudServiceContract.min.js">
       <DependentUpon>CrudServiceContract.ts</DependentUpon>
     </Content>
     <Content Include="src\service\contract\StudentServiceContract.js">
       <DependentUpon>StudentServiceContract.ts</DependentUpon>
     </Content>
+    <Content Include="src\service\contract\StudentServiceContract.min.js">
+      <DependentUpon>StudentServiceContract.ts</DependentUpon>
+    </Content>
     <Content Include="src\service\impl\base\AbstractCrudServiceImpl.js">
+      <DependentUpon>AbstractCrudServiceImpl.ts</DependentUpon>
+    </Content>
+    <Content Include="src\service\impl\base\AbstractCrudServiceImpl.min.js">
       <DependentUpon>AbstractCrudServiceImpl.ts</DependentUpon>
     </Content>
     <Content Include="src\service\impl\StudentServiceImpl.js">
@@ -92,7 +119,13 @@
     </Content>
     <TypeScriptCompile Include="src\service\impl\StudentServiceImpl.ts" />
     <TypeScriptCompile Include="src\service\impl\base\AbstractCrudServiceImpl.ts" />
+    <Content Include="src\service\impl\StudentServiceImpl.min.js">
+      <DependentUpon>StudentServiceImpl.ts</DependentUpon>
+    </Content>
     <Content Include="src\service\mock\base\AbstractCrudServiceMock.js">
+      <DependentUpon>AbstractCrudServiceMock.ts</DependentUpon>
+    </Content>
+    <Content Include="src\service\mock\base\AbstractCrudServiceMock.min.js">
       <DependentUpon>AbstractCrudServiceMock.ts</DependentUpon>
     </Content>
     <Content Include="src\service\mock\StudentServiceMock.ts" />
@@ -102,6 +135,45 @@
     <TypeScriptCompile Include="src\entity\Student.ts" />
     <TypeScriptCompile Include="src\entity\base\BaseEntity.ts" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="src\service\contract\base\CrudServiceContract.js.map">
+      <DependentUpon>CrudServiceContract.ts</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\service\impl\base\AbstractCrudServiceImpl.js.map">
+      <DependentUpon>AbstractCrudServiceImpl.ts</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\service\impl\StudentServiceImpl.js.map">
+      <DependentUpon>StudentServiceImpl.ts</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\service\contract\StudentServiceContract.js.map">
+      <DependentUpon>StudentServiceContract.ts</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\config\appConfig.js.map">
+      <DependentUpon>appConfig.ts</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\entity\base\BaseEntity.js.map">
+      <DependentUpon>BaseEntity.ts</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\entity\Student.js.map">
+      <DependentUpon>Student.ts</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\service\mock\base\AbstractCrudServiceMock.js.map">
+      <DependentUpon>AbstractCrudServiceMock.ts</DependentUpon>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" />
 </Project>

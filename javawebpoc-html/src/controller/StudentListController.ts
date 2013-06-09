@@ -10,8 +10,9 @@ module controller {
     }
 
     export class StudentListController {
-        constructor($scope: StudentViewModel, $studentService:service.contract.StudentServiceContract) {
+        constructor($scope: StudentViewModel, $studentService: service.contract.StudentServiceContract) {
             $scope.students = [];
+
         }
     }
 

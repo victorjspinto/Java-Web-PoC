@@ -9,17 +9,16 @@
 
 var routeProviderFunction = ($routeProvider: ng.IRouteProviderProvider) =>
 {
-    $routeProvider.when("/student", {} );
+    $routeProvider.when("/student", {});
 }
 
 angular.module("javawebpoc-html", [])
 
     .config(["$routeProvider", routeProviderFunction])
 
-    .service("$userService", ($http:ng.IHttpService) => new service.impl.StudentServiceImpl($http))
+    .service("$userService", ($http: ng.IHttpService) => new service.impl.StudentServiceImpl($http))
 
 //    .service("$userService", ($http: ng.IHttpService) => new service.mock.StudentServiceMock());
 
-;
+    ;
 
-    
