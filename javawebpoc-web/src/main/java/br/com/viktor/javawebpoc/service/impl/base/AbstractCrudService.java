@@ -51,4 +51,11 @@ public class AbstractCrudService<T extends AbstractEntity> implements
 		return repository.findOne(entity.getId());
 	}
 
+	@Override
+	public T find(long id) throws EntityNotExistException {
+		T t = repository.findOne(id);
+		if(t == null) throw new EntityNotExistException();
+		return t;
+	}
+
 }

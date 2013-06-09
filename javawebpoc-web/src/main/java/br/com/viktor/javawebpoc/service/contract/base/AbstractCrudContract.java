@@ -16,4 +16,6 @@ public interface AbstractCrudContract<E extends AbstractEntity> {
 	public List<E> list();
 
 	public E get(E entity) throws EntityNotExistException;
+	
+	public E find(long id) throws EntityNotExistException;
 }

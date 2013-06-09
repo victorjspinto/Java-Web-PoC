@@ -10,7 +10,7 @@ module service.impl.base {
             this.http = http;
         }
 
-        save(value: any, successCallback: Function, faultCallback: Function) {
+        save(value: any, successCallback: () => void, faultCallback: () => void) {
             this.http.get("rest/student/save")
                 .success(() => successCallback.call([]))
                 .error(() => faultCallback.call([]));

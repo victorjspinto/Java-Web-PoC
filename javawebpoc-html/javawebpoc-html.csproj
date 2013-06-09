@@ -71,6 +71,7 @@
       <DependentUpon>appConfig.ts</DependentUpon>
     </Content>
     <TypeScriptCompile Include="src\config\appConfig.ts" />
+    <Content Include="src\controller\StudentListController.ts" />
     <Content Include="src\entity\base\BaseEntity.js">
       <DependentUpon>BaseEntity.ts</DependentUpon>
     </Content>
@@ -94,10 +95,7 @@
     <Content Include="src\service\mock\base\AbstractCrudServiceMock.js">
       <DependentUpon>AbstractCrudServiceMock.ts</DependentUpon>
     </Content>
-    <Content Include="src\service\mock\UserServiceMock.js">
-      <DependentUpon>UserServiceMock.ts</DependentUpon>
-    </Content>
-    <TypeScriptCompile Include="src\service\mock\UserServiceMock.ts" />
+    <Content Include="src\service\mock\StudentServiceMock.ts" />
     <TypeScriptCompile Include="src\service\mock\base\AbstractCrudServiceMock.ts" />
     <TypeScriptCompile Include="src\service\contract\StudentServiceContract.ts" />
     <TypeScriptCompile Include="src\service\contract\base\CrudServiceContract.ts" />

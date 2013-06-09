@@ -5,14 +5,13 @@
 module controller {
 
     export interface StudentViewModel extends ng.IScope {
-
         students: entity.Student[];
         refreshList: () => void;
     }
 
     export class StudentListController {
         constructor($scope: StudentViewModel, $studentService:service.contract.StudentServiceContract) {
-            
+            $scope.students = [];
         }
     }
 
