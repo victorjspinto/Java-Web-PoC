@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="javawebpoc-html">
+<head>
+    <title></title>
+
+    <link rel="stylesheet" href="lib/bootstrap/bootstrap.css" />
+
+    <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/bootstrap/bootstrap.js"></script>
+    <script src="lib/angular/angular.js"></script>
+
+    <script src="src/config/appConfig.js"></script>
+    <script src="src/service/mock/base/AbstractCrudServiceMock.js"></script>
+    <script src="src/service/mock/StudentServiceMock.js"></script>
+    <script src="src/controller/StudentListController.js"></script>
+</head>
+<body>
+    <ul class="nav nav-pills">
+        <li class="active">
+            <a href="#">Home</a>
+        </li>
+        <li>
+            <a href="#/student">Estudantes</a>
+        </li>
+    </ul>
+
+    <div ng-view>
+
+    </div>
+</body>
+</html>
