@@ -1,6 +1,7 @@
 module entity.base {
     export class BaseEntity {
-        public id: number;
-
+        
+        constructor(public id: number) {
+        }
     }
 }

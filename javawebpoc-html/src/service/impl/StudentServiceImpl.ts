@@ -8,5 +8,4 @@ module service.impl {
             super($http, "student");
         }
     }
-
 }

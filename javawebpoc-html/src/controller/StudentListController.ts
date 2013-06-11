@@ -12,7 +12,9 @@ module controller {
     export class StudentListController {
         constructor($scope: StudentViewModel, $studentService: service.contract.StudentServiceContract) {
             $scope.students = [];
-
+            $scope.students.push(new entity.Student(1, "Victor"));
+            $scope.students.push(new entity.Student(2, "Vinicius"));
+            $scope.students.push(new entity.Student(3, "Test"));
         }
     }
 

@@ -2,7 +2,8 @@
 
 module entity {
     export class Student extends base.BaseEntity {
-        public nome: string;
-
+        constructor(public id: number, public name: String) {
+            super(id);
+        }
     }
 }

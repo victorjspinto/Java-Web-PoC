@@ -10,6 +10,8 @@
     <script src="lib/angular/angular.js"></script>
 
     <script src="src/config/appConfig.js"></script>
+    <script src="src/entity/base/BaseEntity.js"></script>
+    <script src="src/entity/Student.js"></script>
     <script src="src/service/mock/base/AbstractCrudServiceMock.js"></script>
     <script src="src/service/mock/StudentServiceMock.js"></script>
     <script src="src/controller/StudentListController.js"></script>
@@ -24,7 +26,8 @@
         </li>
     </ul>
 
-    <div ng-view>
+    <div data-ng-view
+     data-ng-animate="{enter: 'view-enter', leave: 'view-leave'}">
 
     </div>
 </body>
