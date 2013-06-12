@@ -14,11 +14,16 @@ module controller {
 
         private scope: StudentViewModel;
         private service: service.contract.StudentServiceContract;
+        private timeoutService:ng.ITimeoutService;
 
-        constructor($scope: StudentViewModel, $studentService: service.contract.StudentServiceContract) {
+        constructor($scope: StudentViewModel, 
+            $studentService: service.contract.StudentServiceContract,
+            $timeout:ng.ITimeoutService) {
             this.scope = $scope;
+            this.timeoutService = $timeout;
 
             $scope.students = [];
+            $scope.alerts = [];
             $scope.refreshList = this.refreshList;
             this.scope = $scope;
             this.service = $studentService;
@@ -29,16 +34,16 @@ module controller {
             this.service.all((data) => { this.scope.students = data },
                 () => {
                     var id: number = this.createAlert("Houve um erro ao consultar a lista de estudantes.", "error");
-                    setTimeout(() => this.closeAlert(id), 6000);
+                    this.timeoutService(() => this.closeAlert(id), 6000);
                 });
         }
 
         createAlert(message: String, alertType: String) {
-            return this.scope.alerts.push({ message: message, alertType: alertType });
+            return this.scope.alerts.push({ message: message, type: alertType });
         }
 
         closeAlert(id: number) {
-            this.scope.alerts.splice(id)
+
         }
     }
 }

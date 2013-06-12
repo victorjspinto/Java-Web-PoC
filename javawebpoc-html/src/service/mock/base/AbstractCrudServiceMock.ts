@@ -33,7 +33,7 @@ module service.mock.base {
         all(successCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) {
 
-            this.timeoutService(() => successCallback(this.repo, 200, null, null), 3000);
+            this.timeoutService(() => faultCallback(this.repo, 200, null, null), 3000);
         }
     }
 }
