@@ -11,26 +11,28 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import br.com.viktor.javawebpoc.entity.Student;
+import br.com.viktor.javawebpoc.service.contract.EntityExistsException;
 import br.com.viktor.javawebpoc.service.contract.EntityNotExistException;
 import br.com.viktor.javawebpoc.service.contract.StudentServiceContract;
 
 @Controller
-@RequestMapping("/student/*")
+@RequestMapping("/student")
 public class StudentController {
 
 	private StudentServiceContract service;
-	
+
 	@Autowired
-	public StudentController(StudentServiceContract service) {
+	public StudentController(StudentServiceContract service)
+			throws EntityExistsException {
 		this.service = service;
 	}
-	
-	@RequestMapping(value = "/list", method = RequestMethod.GET )
+
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public List<Student> list(){
+	public List<Student> list() {
 		return service.list();
 	}
-	
+
 	@RequestMapping(value = "/find/{studentId}")
 	@ResponseBody
 	public String find(@PathVariable("studentId") long studentId) {
@@ -39,12 +41,11 @@ public class StudentController {
 
 		} catch (EntityNotExistException e) {
 			return "Not found";
-		}		
-	}
-	
-	@RequestMapping(value = "/save")
-		public void save(Model model){
-		model.addAttribute("list", service.list());
+		}
 	}
 
+	@RequestMapping(value = "/save")
+	public void save(Model model) {
+		model.addAttribute("list", service.list());
+	}
 }
