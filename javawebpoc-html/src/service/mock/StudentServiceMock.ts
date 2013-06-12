@@ -1,6 +1,6 @@
 ///<reference path='../contract/StudentServiceContract.ts'/>
 ///<reference path='base/AbstractCrudServiceMock.ts'/>
-///<reference path='../../../entity/Student.ts'/>
+///<reference path='../../entity/Student.ts'/>
 
 module service.mock {
     export class StudentServiceMock extends base.AbstractCrudServiceMock implements contract.StudentServiceContract {

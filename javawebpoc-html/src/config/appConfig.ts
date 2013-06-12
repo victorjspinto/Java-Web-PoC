@@ -18,7 +18,7 @@ angular.module("javawebpoc-html", ['ui.bootstrap'])
 
 //    .service("$userService", ($http: ng.IHttpService) => new service.impl.StudentServiceImpl($http))
 
-    .service("$studentService", () => new service.mock.StudentServiceMock());
+    .service("$studentService", ($timeout) => new service.mock.StudentServiceMock($timeout));
 
     ;
 
