@@ -12,7 +12,7 @@ var routeProviderFunction = ($routeProvider: ng.IRouteProviderProvider) =>
     $routeProvider.when("/student", { templateUrl: "view/crud/student/StudentList.html", controller: controller.StudentListController });
 }
 
-angular.module("javawebpoc-html", [])
+angular.module("javawebpoc-html", ['ui.bootstrap'])
 
     .config(["$routeProvider", routeProviderFunction])
 

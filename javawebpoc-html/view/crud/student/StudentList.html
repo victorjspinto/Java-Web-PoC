@@ -3,6 +3,11 @@
         <div class="span12">
             <h3>Lista de Estudantes
             </h3>
+
+            <div>
+                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+            </div>
+
             <table class="table">
                 <thead>
                     <tr>
