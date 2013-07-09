@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.viktor.javawebpoc.entity.base.AbstractEntity;
-import br.com.viktor.javawebpoc.service.contract.EntityExistsException;
-import br.com.viktor.javawebpoc.service.contract.EntityNotExistException;
+import br.com.viktor.javawebpoc.exception.EntityExistsException;
+import br.com.viktor.javawebpoc.exception.EntityNotExistException;
 import br.com.viktor.javawebpoc.service.contract.base.AbstractCrudContract;
 
 public class AbstractCrudService<T extends AbstractEntity> implements
@@ -56,6 +56,13 @@ public class AbstractCrudService<T extends AbstractEntity> implements
 		T t = repository.findOne(id);
 		if(t == null) throw new EntityNotExistException();
 		return t;
+	}
+
+	@Override
+	public void delete(Long id) throws EntityNotExistException {
+		T t = repository.findOne(id);
+		if(t == null) throw new EntityNotExistException();
+		repository.delete(t);
 	}
 
 }
