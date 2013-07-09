@@ -7,9 +7,9 @@ import javax.persistence.UniqueConstraint;
 import br.com.viktor.javawebpoc.entity.base.AbstractEntity;
 
 @Entity
-@Table(name="TB_STUDENT", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
+@Table(name = "TB_STUDENT", uniqueConstraints = @UniqueConstraint(columnNames = { "name" }))
 public class Student extends AbstractEntity {
-	
+
 	private String name;
 
 	public String getName() {
