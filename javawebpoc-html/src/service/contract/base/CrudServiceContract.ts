@@ -3,25 +3,25 @@
 
 module service.contract.base {
 
-    export interface CrudServiceContract {
+    export interface CrudServiceContract<T extends entity.base.BaseEntity> {
 
-        save(item: entity.base.BaseEntity,
-            successCallback: (data: entity.base.BaseEntity, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
+        save(item: T,
+            successCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any);
 
-        update(item: entity.base.BaseEntity,
-            successCallback: (data: entity.base.BaseEntity, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
+        update(item: T,
+            successCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any);
 
-        remove(item: entity.base.BaseEntity,
-            successCallback: (data: entity.base.BaseEntity, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
+        remove(item: T,
+            successCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any);
 
         findById(item: number,
-            successCallback: (data: entity.base.BaseEntity, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
+            successCallback: (data: T, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any);
 
-        all(successCallback: (data: entity.base.BaseEntity[], status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
+        all(successCallback: (data: T[], status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any);
 
     }

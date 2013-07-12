@@ -7,7 +7,7 @@
 ///<reference path='../service/mock/StudentServiceMock.ts'/>
 ///<reference path='../controller/StudentListController.ts'/>
 
-var routeProviderFunction = ($routeProvider: ng.IRouteProviderProvider) =>
+var routeProviderFunction = ($routeProvider: ng.IRouteProvider) =>
 {
     $routeProvider.when("/student", { templateUrl: "view/crud/student/StudentList.html", controller: controller.StudentListController });
 }

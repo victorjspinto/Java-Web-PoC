@@ -3,7 +3,7 @@
 
 module service.impl {
 
-    export class StudentServiceImpl extends base.AbstractCrudServiceImpl implements contract.StudentServiceContract {
+    export class StudentServiceImpl extends base.AbstractCrudServiceImpl<entity.Student> implements contract.StudentServiceContract {
         constructor($http: ng.IHttpService) {
             super($http, "student");
         }

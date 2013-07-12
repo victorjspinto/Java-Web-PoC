@@ -940,8 +940,7 @@ function test_deferred() {
     filtered.done(function (data) { });
 
     function asyncEvent() {
-        var newDeferred = new jQuery.Deferred();
-        var dfd: JQueryDeferred;
+        var dfd: JQueryDeferred<string> = $.Deferred<string>();
         setTimeout(function () {
             dfd.resolve("hurray");
         }, Math.floor(400 + Math.random() * 2000));
@@ -1060,6 +1059,9 @@ function test_each() {
     });
     $.each({ name: "John", lang: "JS" }, function (k, v) {
         alert("Key: " + k + ", Value: " + v);
+    });
+    $.each([{a: 1}, {a: 2}, {a: 3}], function (i, o) {
+        alert("Index #" + i + ": " + o.a);
     });
     $('li').each(function (index) {
         alert(index + ': ' + $(this).text());
@@ -1202,7 +1204,8 @@ function test_eventParams() {
         event.stopPropagation();
     });
     $("body").click(function (event) {
-        $("#log").html("clicked: " + event.target.nodeName);
+        //bugfix, duplicate identifier.  see: http://stackoverflow.com/questions/14824143/duplicate-identifier-nodename-in-jquery-d-ts
+        //$("#log").html("clicked: " + event.target.nodeName);
     });
     $('#whichkey').bind('keydown', function (e) {
         $('#log').html(e.type + ': ' + e.which);
@@ -1549,11 +1552,12 @@ function test_grep() {
         return (n != 5 && i > 4);
     });
     $("p").text(arr.join(", "));
-    arr = jQuery.grep(arr, function (a) { return a != 9; });
+    var arr2 = jQuery.grep(arr, function (a) { return a != 9; });
     $("span").text(arr.join(", "));
     $.grep([0, 1, 2], function (n, i) {
         return n > 0;
     }, true);
+    var arr3 = $.grep(["a", "b", "c"], function (n, i) { return n !== "b"; });
 }
 
 function test_has() {
@@ -1563,10 +1567,15 @@ function test_has() {
 }
 
 function test_hasClass() {
+    $("div#result1").append($("p:first").hasClass("selected"));
+    $("div#result2").append($("p:last").hasClass("selected"));
+    $("div#result3").append($("p").hasClass("selected"));
+
     $('#mydiv').hasClass('foo');
-    $("div#result1").append($("p:first").hasClass("selected").toString());
-    $("div#result2").append($("p:last").hasClass("selected").toString());
-    $("div#result3").append($("p").hasClass("selected").toString());
+    // typescript has a bug to (bool).toString() - I'll comment this code until typescript team solve this problem.
+    //$("div#result1").append($("p:first").hasClass("selected").toString());
+    //$("div#result2").append($("p:last").hasClass("selected").toString());
+    //$("div#result3").append($("p").hasClass("selected").toString());
 }
 
 function test_hasData() {
@@ -1687,6 +1696,9 @@ function test_inArray() {
     $spans.eq(1).text(jQuery.inArray(4, arr));
     $spans.eq(2).text(jQuery.inArray("Karl", arr));
     $spans.eq(3).text(jQuery.inArray("Pete", arr, 2));
+
+    var arr2: number[] = [1, 2, 3, 4];
+    $spans.eq(1).text(jQuery.inArray(4, arr2));
 }
 
 function test_index() {
@@ -1865,8 +1877,10 @@ function test_jQuery() {
     $foo.triggerHandler('eventName');
     $("div > p").css("border", "1px solid gray");
     $("input:radio", document.forms[0]);
+	var xml: any;
     $("div", xml.responseXML);
     $(document.body).css("background", "black");
+	var myForm: any;
     $(myForm.elements).hide();
     $('<p id="test">My <em>new</em> text</p>').appendTo('body');
     $('<img />');
@@ -1893,7 +1907,7 @@ function test_jQuery() {
 }
 
 function test_jquery() {
-    var a = { what: "A regular JS object" },
+    var a = <any>{ what: "A regular JS object" },
     b = $('body');
     if (a.jquery) {
         alert(' a is a jQuery object! ');
@@ -2187,7 +2201,7 @@ function test_map() {
         return (a > 50 ? a - 45 : null);
     });
     var array = [0, 1, 52, 97];
-    array = $.map(array, function (a, index) {
+    var array2 = $.map(array, function (a, index) {
         return [a - 45, index];
     });
 }
@@ -2199,6 +2213,7 @@ function test_merge() {
     var first = ['a', 'b', 'c'];
     var second = ['d', 'e', 'f'];
     $.merge($.merge([], first), second);
+    var z = $.merge([0, 1, 2], ['a', 'b', 'c']);
 }
 
 function test_prop() {
@@ -2218,6 +2233,13 @@ function test_prop() {
     var title: string = $('option:selected', this).prop('title');
 }
 
+
+function test_selector() {
+  var $main = $('#main');
+  var $mainDivs = $('div', $main);
+  return $mainDivs.selector == '#main div';
+}
+
 function test_text() {
     var str = $("p:first").text();
     $("p:last").html(str);
@@ -2226,3 +2248,57 @@ function test_text() {
     });
     $("p").text("<b>Some</b> new text.");
 }
+
+$('#item').click(function(e) {
+	if (e.ctrlKey) { console.log('control pressed'); }
+	if (e.altKey) { console.log('alt pressed'); }
+});
+
+function test_addBack() {
+    $('li.third-item').nextAll().addBack().css('background-color', 'red');
+
+    $("div.left, div.right").find("div, div > p").addClass("border");
+
+    // First Example
+    $("div.before-addback").find("p").addClass("background");
+
+    // Second Example
+    $("div.after-addback").find("p").addBack().addClass("background");
+}
+
+// http://api.jquery.com/jQuery.parseHTML/
+function test_parseHTML() {
+	var $log = $( "#log" ),
+		str = "hello, <b>my name is</b> jQuery.",
+		html = $.parseHTML( str ),
+		nodeNames = [];
+	 
+	// Append the parsed HTML
+	$log.append( html );
+	 
+	// Gather the parsed HTML's node names
+	$.each( html, function( i, el ) {
+		nodeNames[i] = "<li>" + el.nodeName + "</li>";
+	});
+	 
+	// Insert the node names
+	$log.append( "<h3>Node Names:</h3>" );
+	$( "<ol></ol>" )
+	  .append( nodeNames.join( "" ) )
+	  .appendTo( $log );
+}
+
+function test_EventIsNewable() {
+    var ev = new jQuery.Event('click');
+}
+
+function test_EventIsCallable() {
+    var ev = jQuery.Event('click');
+}
+
+$.when($.ajax("/my/page.json")).then((a,b,c) => a.asdf); // is type JQueryPromise<any>
+$.when("asdf", "jkl;").done(x => x.length, x=> x.length);
+
+var f1 = $.when("fetch"); // Is type JQueryPromise<string>
+var f2: JQueryPromise<string[]> = f1.then(s => [s, s]);
+var f3: JQueryPromise<number> = f2.then(v => 3);
