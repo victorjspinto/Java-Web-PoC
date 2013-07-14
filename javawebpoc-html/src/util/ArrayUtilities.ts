@@ -1,7 +1,7 @@
 module util{
 	export class ArrayUtilities{
-		findByKey(array:object[], key:string, value:object):number{
-		
+		findByKey(array:any[], key:string, value:any):number{
+			return 0;
 		}
 	}
 }

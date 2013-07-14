@@ -8,14 +8,13 @@ module.exports = function (grunt) {
                 banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
             },
             build: {
-                src: 'src/**/*.js',
+                src: ['src/config/**/*.js', 'src/controller/**/*.js', 'src/entity/**/*.js', 'src/service/**/*.js', 'src/util/**/*.js'],
                 dest: 'build/app.min.js'
             }
         },
         typescript: {
             base: {
                 src: ['src/**/*.ts'],
-                //dest: 'js/PixelVisionJSDemos.js',
                 options: {
                     module: 'amd',
                     target: 'es5'
@@ -39,7 +38,7 @@ module.exports = function (grunt) {
             server: {
                 options: {
                     port: 8080,
-                    base: './'
+                    base: 'src/'
                 }
             }
         },
@@ -60,6 +59,6 @@ module.exports = function (grunt) {
 
     // Default task(s).
     grunt.registerTask('default', ['connect', 'open', 'watch']);
-    grunt.registerTask('build', ['bower:install', 'typescript', 'uglify']);
+    grunt.registerTask('build', ['typescript', 'uglify']);
 
 };
