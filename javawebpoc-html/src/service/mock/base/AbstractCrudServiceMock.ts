@@ -27,13 +27,15 @@ module service.mock.base {
 
         findById(id: number, successCallback: (data: T, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) {
-            
+            var target: entity.base.BaseEntity;
+            this.repo.forEach((x) => { if (x.id == id) target = x });
+            this.timeoutService(() => faultCallback(target, 200, null, null), 3000);
         }
 
         all(successCallback: (data: T[], status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) {
 
-            this.timeoutService(() => faultCallback(this.repo, 200, null, null), 3000);
+            this.timeoutService(() => successCallback(this.repo, 200, null, null), 3000);
         }
     }
 }

@@ -5,18 +5,30 @@
 
     <link rel="stylesheet" href="lib/bootstrap/docs/assets/css/bootstrap.css" />
 
+    <link rel="stylesheet" href="lib/blueimp-file-upload/css/jquery.fileupload-ui.css" />
+
+    <!-- Dependencies -->
     <script src="lib/jquery/jquery.js"></script>
+    <script src="lib/jquery-ui/ui/jquery.ui.widget.js"></script>
     <script src="lib/bootstrap/docs/assets/js/bootstrap.js"></script>
     <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
+    <script src="lib/blueimp-load-image/js/load-image.js"></script>
+    <script src="lib/blueimp-canvas-to-blob/js/canvas-to-blob.js"></script>
+    <script src="lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+    <script src="lib/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+    <script src="lib/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+
+    <!-- APP -->
     <script src="config/appConfig.js"></script>
     <script src="entity/base/BaseEntity.js"></script>
     <script src="entity/Student.js"></script>
     <script src="service/mock/base/AbstractCrudServiceMock.js"></script>
     <script src="service/mock/StudentServiceMock.js"></script>
     <script src="controller/StudentListController.js"></script>
+    <script src="controller/StudentEditController.js"></script>
 </head>
 <body>
     <ul class="nav nav-pills">
