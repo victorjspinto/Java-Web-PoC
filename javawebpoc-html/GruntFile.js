@@ -29,7 +29,7 @@ module.exports = function (grunt) {
         bower: {
             install: {
                 options: {
-                    targetDir: './lib',
+                    targetDir: './src/lib',
                     layout: 'byComponent'
                 }
                 //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
