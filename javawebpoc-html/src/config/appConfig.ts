@@ -33,6 +33,8 @@ var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective
             (<any>(element)).fileupload(
                 {
                     dataType: 'text',
+                    disableImageResize : false,
+                    previewCrop: true,
                     add: function (e, data) {
                         $uploadManager.add(data);
                     },
@@ -42,7 +44,10 @@ var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective
                     },
                     done: function (e, data) {
                         $uploadManager.setProgress(0);
-                    }
+                    },
+                    process: function (data) {
+                        return console.log(data);
+                    },
                 }
             );
         }

@@ -1,15 +1,23 @@
 ﻿<div>{{student.name}}</div>
+{{student.id}}
 
 <div class="control-group">
     <div class="controls">
         <span class="btn btn-success fileinput-button">
             <i class="icon-plus icon-white"></i>
-            <input type="file" name="file" data-url="home/upload" 
+            <input type="file" name="file" data-url="rest/student/{{student.id}}/photos" 
                    multiple upload><span>Add files...</span>
         </span>
     </div>
     <button class="btn" ng-click="upload()">Upload!!</button>
     
+    <table>
+    	<tr>
+    		
+    	</tr>
+
+    </table>
+
     <div ng-repeat="photo in photos">{{photo}}</div>
     
 </div>

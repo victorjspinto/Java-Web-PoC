@@ -8,6 +8,7 @@ module controller {
     export interface StudentEditViewModel extends ng.IScope {
         student: entity.Student;
         photos: any[];
+        upload: () => void;
     }
 
     export class StudentEditController {
@@ -18,6 +19,7 @@ module controller {
             public $rootScope: ng.IRootScopeService) {
 
             $scope.photos = [];
+            $scope.upload = () => this.upload();
 
             $studentService.findById($routeParams.studentId, (data) => this.$scope.student = data, () => null);
 
