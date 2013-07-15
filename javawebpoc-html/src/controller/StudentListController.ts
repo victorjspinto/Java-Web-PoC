@@ -4,7 +4,7 @@
 
 module controller {
 
-    export interface StudentViewModel extends ng.IScope {
+    export interface StudentEditViewModel extends ng.IScope {
         students: entity.Student[];
         alerts: any[];
         refreshList: () => void;
@@ -12,11 +12,11 @@ module controller {
 
     export class StudentListController {
 
-        private scope: StudentViewModel;
+        private scope: StudentEditViewModel;
         private service: service.contract.StudentServiceContract;
         private timeoutService:ng.ITimeoutService;
 
-        constructor($scope: StudentViewModel, 
+        constructor($scope: StudentEditViewModel, 
             $studentService: service.contract.StudentServiceContract,
             $timeout:ng.ITimeoutService) {
             this.scope = $scope;
