@@ -23,7 +23,10 @@ angular.module("javawebpoc-html", ['ui.bootstrap'])
     .service("$studentService", ($timeout) => new service.mock.StudentServiceMock($timeout))
     .factory("$uploadManager", ($rootScope) => new util.UploadManager($rootScope))
     .directive("upload", ["$uploadManager", ($uploadManager: util.UploadManager) => uploadDirectiveFactory($uploadManager)])
-    .directive("telephone", () => telephoneDirectiveFactory());
+    .directive("telephone", () => telephoneDirectiveFactory())
+    .directive("crudform", () => crudTemplate())
+    ;
+
 ;
 
 var telephoneDirectiveFactory = ():ng.IDirective => {
@@ -31,17 +34,37 @@ var telephoneDirectiveFactory = ():ng.IDirective => {
         scope:{
             data:"="
         },
-        replace: true,
+        replace: true, //substitui a tag do DOM
         restrict: "E", // A- attribure E-Element C-Class css M-on coment directive:<name>,
         template:
             "<div> " +
-                "<b><h6>Telefone</h6></b>" +
-                "<div>DDI: {{data.ddi}}</div>" +
-                "<div>DDD: {{data.ddd}}</div>" +
-                "<div>Telefone: {{data.telephoneNumber}}</div>" +
+                "<div><b><h6>Telefone</h6></b>" +
+                    "<div>DDI: {{data.ddi}}</div>" +
+                    "<div>DDD: {{data.ddd}}</div>" +
+                    "<div>Telefone: {{data.telephoneNumber}}</div>" +
+                "</div>" +
             "</div>"
     }
 };
+
+var crudTemplate = ():ng.IDirective => {
+    return {
+        restrict:"E",
+        replace:true,
+        transclude:true,
+        template:
+            "<div class='container-fluid'>" +
+                "<div class='row-fuild' ng-transclude></div>" +
+                "<div class='row-fluid'>" +
+                    "<div class='span12'>" +
+                        "<button class='btn'>Salvar</button>" +
+                        "<button class='btn'>Cancelar</button>" +
+                    "</div>" +
+                "</div>" +
+            "</div>"
+    }
+}
+
 
 var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective => {
     return {

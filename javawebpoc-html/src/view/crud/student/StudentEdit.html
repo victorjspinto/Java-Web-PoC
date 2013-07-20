@@ -1,28 +1,74 @@
-﻿<div class="container">
+﻿<!--<div class="container-fluid">-->
+    <!--<tabset>-->
+        <!--<tab heading="Dados Pessoais">-->
+            <!--<div class="row-fluid">-->
+                <!--<div class="span9">-->
+                    <!--<form>-->
+                        <!--<fieldset>-->
+                            <!--<label>Nome</label>-->
+                            <!--<input type="text" value="{{student.name}}">-->
+                        <!--</fieldset>-->
+                    <!--</form>-->
+                <!--</div>-->
+                <!--<div class="span3   ">-->
+                    <!--<h5>Contatos</h5>-->
+                    <!--<telephone data="telephone" ng-repeat="telephone in student.telephones"></telephone>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</tab>-->
+        <!--<tab heading="Fotos">-->
+            <!--<div>-->
+                <!--<div class="controls">-->
+                    <!--<span class="btn btn-success fileinput-button">-->
+                        <!--<i class="icon-plus icon-white"></i>-->
+                        <!--<input type="file" name="file" data-url="rest/student/{{student.id}}/photos"-->
+                               <!--multiple upload><span>Add files...</span>-->
+                    <!--</span>-->
+                <!--</div>-->
+                <!--<button class="btn" ng-click="upload()">Upload!!</button>-->
+            <!--</div>-->
 
+            <!--<div ng-repeat="photo in photos">{{photo}}</div>-->
+        <!--</tab>-->
+    <!--</tabset>-->
 
+    <!--<div class="row-fluid">-->
+        <!--<div class="span12">-->
+            <!--<button class="btn">Salvar</button>-->
+            <!--<button class="btn">Cancelar</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 
-</div>
+<crudform>
+    <tabset>
+        <tab heading="Dados Pessoais">
+            <div class="span9">
+                <form>
+                    <fieldset>
+                        <label>Nome</label>
+                        <input type="text" value="{{student.name}}">
+                    </fieldset>
+                </form>
+            </div>
+            <div class="span3   ">
+                <h5>Contatos</h5>
+                <telephone data="telephone" ng-repeat="telephone in student.telephones"></telephone>
+            </div>
+        </tab>
+        <tab heading="Fotos">
+            <div>
+                <div class="controls">
+                    <span class="btn btn-success fileinput-button">
+                        <i class="icon-plus icon-white"></i>
+                        <input type="file" name="file" data-url="rest/student/{{student.id}}/photos"
+                               multiple upload><span>Add files...</span>
+                    </span>
+                </div>
+                <button class="btn" ng-click="upload()">Upload!!</button>
+            </div>
 
-<div>{{student.name}}</div>
-{{student.id}}
-
-<div class="control-group">
-
-    <div>
-        <div class="controls">
-            <span class="btn btn-success fileinput-button">
-                <i class="icon-plus icon-white"></i>
-                <input type="file" name="file" data-url="rest/student/{{student.id}}/photos"
-                       multiple upload><span>Add files...</span>
-            </span>
-        </div>
-        <button class="btn" ng-click="upload()">Upload!!</button>
-    </div>
-
-    teste
-    <telephone data="telephone" ng-repeat="telephone in student.telephones"></telephone>
-
-    <div ng-repeat="photo in photos">{{photo}}</div>
-    
-</div>
+            <div ng-repeat="photo in photos">{{photo}}</div>
+        </tab>
+    </tabset>
+</crudform>
