@@ -29,7 +29,7 @@ module service.mock.base {
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) {
             var target: T;
             this.repo.forEach((x) => { if (x.id == id) target = x });
-            this.timeoutService(() => successCallback(target, 200, null, null), 3000);
+            this.timeoutService(() => successCallback(target, 200, null, null), 0);
         }
 
         all(successCallback: (data: T[], status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,

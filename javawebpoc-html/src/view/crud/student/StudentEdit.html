@@ -1,22 +1,27 @@
-﻿<div>{{student.name}}</div>
+﻿<div class="container">
+
+
+
+</div>
+
+<div>{{student.name}}</div>
 {{student.id}}
 
 <div class="control-group">
-    <div class="controls">
-        <span class="btn btn-success fileinput-button">
-            <i class="icon-plus icon-white"></i>
-            <input type="file" name="file" data-url="rest/student/{{student.id}}/photos" 
-                   multiple upload><span>Add files...</span>
-        </span>
-    </div>
-    <button class="btn" ng-click="upload()">Upload!!</button>
-    
-    <table>
-    	<tr>
-    		
-    	</tr>
 
-    </table>
+    <div>
+        <div class="controls">
+            <span class="btn btn-success fileinput-button">
+                <i class="icon-plus icon-white"></i>
+                <input type="file" name="file" data-url="rest/student/{{student.id}}/photos"
+                       multiple upload><span>Add files...</span>
+            </span>
+        </div>
+        <button class="btn" ng-click="upload()">Upload!!</button>
+    </div>
+
+    teste
+    <telephone data="telephone" ng-repeat="telephone in student.telephones"></telephone>
 
     <div ng-repeat="photo in photos">{{photo}}</div>
     

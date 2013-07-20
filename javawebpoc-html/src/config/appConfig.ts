@@ -21,10 +21,27 @@ angular.module("javawebpoc-html", ['ui.bootstrap'])
     .config(["$routeProvider", routeProviderFunction])
 //.service("$userService", ($http: ng.IHttpService) => new service.impl.StudentServiceImpl($http))
     .service("$studentService", ($timeout) => new service.mock.StudentServiceMock($timeout))
-    .directive("upload", ["$uploadManager", ($uploadManager: util.UploadManager) => uploadDirectiveFactory($uploadManager)])
     .factory("$uploadManager", ($rootScope) => new util.UploadManager($rootScope))
+    .directive("upload", ["$uploadManager", ($uploadManager: util.UploadManager) => uploadDirectiveFactory($uploadManager)])
+    .directive("telephone", () => telephoneDirectiveFactory());
 ;
-    
+
+var telephoneDirectiveFactory = ():ng.IDirective => {
+    return {
+        scope:{
+            data:"="
+        },
+        replace: true,
+        restrict: "E", // A- attribure E-Element C-Class css M-on coment directive:<name>,
+        template:
+            "<div> " +
+                "<b><h6>Telefone</h6></b>" +
+                "<div>DDI: {{data.ddi}}</div>" +
+                "<div>DDD: {{data.ddd}}</div>" +
+                "<div>Telefone: {{data.telephoneNumber}}</div>" +
+            "</div>"
+    }
+};
 
 var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective => {
     return {
@@ -47,7 +64,7 @@ var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective
                     },
                     process: function (data) {
                         return console.log(data);
-                    },
+                    }
                 }
             );
         }
