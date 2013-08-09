@@ -35,7 +35,7 @@ var telephoneDirectiveFactory = ():ng.IDirective => {
             data:"="
         },
         replace: true, //substitui a tag do DOM
-        restrict: "E", // A- attribure E-Element C-Class css M-on coment directive:<name>,
+        restrict: "E", // A- attribure E-Element C-Class css M-on coment directive
         template:
             "<div> " +
                 "<div><b><h6>Telefone</h6></b>" +
