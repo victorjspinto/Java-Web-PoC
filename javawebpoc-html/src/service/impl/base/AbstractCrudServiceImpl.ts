@@ -3,7 +3,7 @@
 ///<reference path='../../../../definitionFiles/angular/angular.d.ts'/>
 
 module service.impl.base {
-    export class AbstractCrudServiceImpl<T extends entity.base.BaseEntity> implements service.contract.base.CrudServiceContract {
+    export class AbstractCrudServiceImpl<T extends entity.base.BaseEntity> implements service.contract.base.CrudServiceContract<T> {
 
         private http: ng.IHttpService;
         private rootUrlContext: string;
@@ -13,7 +13,7 @@ module service.impl.base {
             this.rootUrlContext = "rest/" + urlContext + "/";
         }
 
-        save(item: entity.base.BaseEntity, successCallback: (data: entity.base.BaseEntity, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
+        save(item: T, successCallback: (data: T, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) {
             this.http.post(this.rootUrlContext, item)
                 .success((callback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) => successCallback.call(callback))
@@ -21,14 +21,14 @@ module service.impl.base {
 
         }
 
-        update(item: entity.base.BaseEntity, successCallback: (data: entity.base.BaseEntity, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
+        update(item: T, successCallback: (data: T, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) {
             this.http.put(this.rootUrlContext, item)
                 .success((callback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) => successCallback.call(callback))
                 .error((callback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) => faultCallback.call(callback));
         }
 
-        remove(item: entity.base.BaseEntity, successCallback: (data: entity.base.BaseEntity, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
+        remove(item: T, successCallback: (data: T, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,
             faultCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) {
             this.http.delete(this.rootUrlContext + item.id)
                  .success((callback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any) => successCallback.call(callback))
