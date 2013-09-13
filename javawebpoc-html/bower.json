@@ -23,5 +23,8 @@
     "**/.*",
     "node_modules",
     "components"
-  ]
+  ],
+  "devDependencies": {
+    "animate.css": "~2.1.0"
+  }
 }
