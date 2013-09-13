@@ -19,7 +19,7 @@ module.exports = function (grunt) {
                 html: ["src/**/*.tpl.html"], // The source html files, https://github.com/basarat/grunt-ts#html-2-typescript-support
                 reference: "./src/reference.ts",  // If specified, generate this file that you can use for your reference management
                 //out: 'test/out.js',                // If specified, generate an out.js file which is the merged js file                     
-                outDir: 'test/outputdirectory',    // If specified, the generate javascript files are placed here. Only works if out is not specified
+                outDir: 'src',    // If specified, the generate javascript files are placed here. Only works if out is not specified
                 watch: 'src',                     // If specified, watches this directory for changes, and re-runs the current target  
                 options: {                    // use to override the default options, http://gruntjs.com/configuring-tasks#options
                     target: 'es3',            // 'es3' (default) | 'es5'
@@ -55,14 +55,14 @@ module.exports = function (grunt) {
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks("grunt-ts");
+    grunt.loadNpmTasks('grunt-ts');
     
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-open');
 
     // Default task(s).
-    grunt.registerTask('default', ['connect', 'open', 'watch']);
+    grunt.registerTask('default', ['connect', 'open', 'ts:dev']);
     grunt.registerTask('build', ['typescript', 'uglify']);
 
 };
