@@ -12,28 +12,32 @@ module.exports = function (grunt) {
                 dest: 'build/app.min.js'
             }
         },
-        typescript: {
-            base: {
-                src: ['src/**/*.ts'],
-                options: {
-                    module: 'amd',
-                    target: 'es5'
+
+        ts: {            
+            dev: {                                 // a particular target   
+                src: ["src/**/*.ts"],        // The source typescript files, http://gruntjs.com/configuring-tasks#files
+                html: ["src/**/*.tpl.html"], // The source html files, https://github.com/basarat/grunt-ts#html-2-typescript-support
+                reference: "./src/reference.ts",  // If specified, generate this file that you can use for your reference management
+                out: 'test/out.js',                // If specified, generate an out.js file which is the merged js file                     
+                outDir: 'test/outputdirectory',    // If specified, the generate javascript files are placed here. Only works if out is not specified
+                watch: 'test',                     // If specified, watches this directory for changes, and re-runs the current target  
+                options: {                    // use to override the default options, http://gruntjs.com/configuring-tasks#options
+                    target: 'es3',            // 'es3' (default) | 'es5'
+                    module: 'commonjs',       // 'amd' (default) | 'commonjs'
+                    sourcemap: true,          // true  (default) | false
+                    declaration: false,       // true | false  (default)                
+                    comments: false           // true | false (default)
+                },
+            },
+            build: {                        // another target 
+                src: ["src/**/*.ts"],
+                options: {                  // overide the main options for this target 
+                    sourcemap: false,
                 }
-            }
+            },
         },
-        watch: {
-            files: 'src/**/*.ts',
-            tasks: ['typescript']
-        },
-        bower: {
-            install: {
-                options: {
-                    targetDir: './src/lib',
-                    layout: 'byComponent'
-                }
-                //just run 'grunt bower:install' and you'll see files from your Bower packages in lib directory
-            }
-        },
+
+
         connect: {
             server: {
                 options: {
@@ -51,8 +55,8 @@ module.exports = function (grunt) {
 
     // Load the plugin that provides the "uglify" task.
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-typescript');
-    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks("grunt-ts");
+    
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-open');
