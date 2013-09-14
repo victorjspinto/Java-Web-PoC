@@ -23,7 +23,7 @@ module.exports = function (grunt) {
                 watch: 'src',                     // If specified, watches this directory for changes, and re-runs the current target  
                 options: {                    // use to override the default options, http://gruntjs.com/configuring-tasks#options
                     target: 'es3',            // 'es3' (default) | 'es5'
-                    module: 'commonjs',       // 'amd' (default) | 'commonjs'
+                    module: 'amd',       // 'amd' (default) | 'commonjs'
                     sourcemap: true,          // true  (default) | false
                     declaration: false,       // true | false  (default)                
                     comments: false           // true | false (default)
