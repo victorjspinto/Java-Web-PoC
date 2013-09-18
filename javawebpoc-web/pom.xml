@@ -16,7 +16,7 @@
 		<source.encoding>UTF-8</source.encoding>
 		<spring.version>3.2.4.RELEASE</spring.version>
 		<jpa.version>1.0</jpa.version>
-		<jackson.version>1.9.9</jackson.version>
+		<jackson.version>2.1.4</jackson.version>
 		<hibernate.version>4.1.4.Final</hibernate.version>
 		<slf4j.version>1.6.4</slf4j.version>
 		<spring.data.version>1.2.0.RELEASE</spring.data.version>
@@ -188,13 +188,8 @@
 
 		<!-- Jackson JSON Serializer -->
 		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-core-asl</artifactId>
-			<version>${jackson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
 

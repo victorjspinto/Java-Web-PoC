@@ -1,6 +1,7 @@
 package br.com.viktor.javawebpoc.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -12,7 +13,7 @@ import br.com.viktor.javawebpoc.service.contract.StudentServiceContract;
 @RequestMapping("/student")
 public class StudentController extends AbstractCrudController<Student>  {
 
-	@Autowired
+	@Inject
 	public StudentController(StudentServiceContract service) {
 		super(service);
 	}

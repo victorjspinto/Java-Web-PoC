@@ -52,7 +52,6 @@ public class WebApplicationInitializer implements org.springframework.web.WebApp
 	private WebApplicationContext createRootContext(ServletContext servletContext) {
 		AnnotationConfigWebApplicationContext rootContext = new AnnotationConfigWebApplicationContext();
 		rootContext.register(ApplicationConfig.class);
-		rootContext.register(PersistenceConfig.class);
 		rootContext.getEnvironment().setActiveProfiles(environment);
 		rootContext.getEnvironment().getPropertySources().addFirst(environmentResource);
 		rootContext.refresh();
