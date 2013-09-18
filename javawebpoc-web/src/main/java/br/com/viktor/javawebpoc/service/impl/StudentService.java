@@ -3,7 +3,8 @@ package br.com.viktor.javawebpoc.service.impl;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 
 import br.com.viktor.javawebpoc.entity.Student;
@@ -19,7 +20,7 @@ public class StudentService extends AbstractCrudService<Student> implements
 
 	protected StudentRepositoryContract studentRepository;
 
-	@Autowired
+	@Inject
 	public StudentService(StudentRepositoryContract repository) {
 		super(repository);
 		this.studentRepository = repository;
