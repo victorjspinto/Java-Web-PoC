@@ -1,59 +1,43 @@
-///<reference path='../../definitionFiles/angular/angular.d.ts'/>
-///<reference path='../entity/Student.ts'/>
-///<reference path='../service/contract/StudentServiceContract.ts'/>
+///<reference path='../reference.ts' />
 
-///<reference path='../service/impl/StudentServiceImpl.ts'/>
-
-///<reference path='../service/mock/StudentServiceMock.ts'/>
-///<reference path='../controller/StudentListController.ts'/>
-///<reference path='../controller/StudentEditController.ts'/>
-
-///<reference path='../util/UploadManager.ts'/>
-
-'use strict';
-
-define(['config/appRoutes','util/DependencyResolver'], function(config, dependencyResolverFor)
-{
-    var app = angular.module('javawebpoc-html', []);
+define(['config/appRoutes', 'util/DependencyResolver'], function (config, dependencyResolverFor) {
+    var app = angular.module('javawebpoc-html', ['lazyOverride']);
 
     app.config(
-    [
-        '$routeProvider',
-        '$locationProvider',
-        '$controllerProvider',
-        '$compileProvider',
-        '$filterProvider',
-        '$provide',
+        [
+            '$routeProvider',
+            '$locationProvider',
+            '$controllerProvider',
+            '$compileProvider',
+            '$filterProvider',
+            '$provide',
 
-        function($routeProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide)
-        {
-            app.lazy =
-            {
-                controller : $controllerProvider.register,
-                directive  : $compileProvider.directive,
-                filter     : $filterProvider.register,
-                factory    : $provide.factory,
-                service    : $provide.service
-            };
-
-            $locationProvider.html5Mode(true);
-
-            if(config.routes !== undefined)
-            {
-                angular.forEach(config.routes, function(route, path)
+            function ($routeProvider: ng.IRouteProvider, $locationProvider, $controllerProvider, $compileProvider, $filterProvider, $provide) {
+                app.lazy =
                 {
-                    $routeProvider.when(path, {templateUrl:route.templateUrl, resolve:dependencyResolverFor(route.dependencies)});
-                });
-            }
+                    controller: $controllerProvider.register,
+                    directive: $compileProvider.directive,
+                    filter: $filterProvider.register,
+                    factory: $provide.factory,
+                    service: $provide.service
+                };
 
-            if(config.defaultRoutePaths !== undefined)
-            {
-                $routeProvider.otherwise({redirectTo:config.defaultRoutePaths});
-            }
-        }
-    ]);
+                $locationProvider.html5Mode(true);
 
-   return app;
+                if (config.routes !== undefined) {
+                    angular.forEach(config.routes, function (route, path) {
+                        $routeProvider.when(path, { templateUrl: route.templateUrl, resolve: dependencyResolverFor(route.dependencies) });
+                    });
+                }
+
+                if (config.defaultRoutePaths !== undefined) {
+                    $routeProvider.otherwise({ redirectTo: config.defaultRoutePaths });
+                }
+            }
+        ]);
+
+    console.log("Carregei a app javawebpoc-html!!!");
+    return app;
 });
 
 
@@ -75,39 +59,39 @@ define(['config/appRoutes','util/DependencyResolver'], function(config, dependen
 
 // ;
 
-var telephoneDirectiveFactory = ():ng.IDirective => {
+var telephoneDirectiveFactory = (): ng.IDirective => {
     return {
-        scope:{
-            data:"="
+        scope: {
+            data: "="
         },
         replace: true, //substitui a tag do DOM
         restrict: "E", // A- attribure E-Element C-Class css M-on coment directive
         template:
-            "<div> " +
-                "<div><b><h6>Telefone</h6></b>" +
-                    "<div>DDI: {{data.ddi}}</div>" +
-                    "<div>DDD: {{data.ddd}}</div>" +
-                    "<div>Telefone: {{data.telephoneNumber}}</div>" +
-                "</div>" +
-            "</div>"
+        "<div> " +
+        "<div><b><h6>Telefone</h6></b>" +
+        "<div>DDI: {{data.ddi}}</div>" +
+        "<div>DDD: {{data.ddd}}</div>" +
+        "<div>Telefone: {{data.telephoneNumber}}</div>" +
+        "</div>" +
+        "</div>"
     }
 };
 
-var crudTemplate = ():ng.IDirective => {
+var crudTemplate = (): ng.IDirective => {
     return {
-        restrict:"E",
-        replace:true,
-        transclude:true,
+        restrict: "E",
+        replace: true,
+        transclude: true,
         template:
-            "<div class='container-fluid'>" +
-                "<div class='row-fuild' ng-transclude></div>" +
-                "<div class='row-fluid'>" +
-                    "<div class='span12'>" +
-                        "<button class='btn'>Salvar</button>" +
-                        "<button class='btn'>Cancelar</button>" +
-                    "</div>" +
-                "</div>" +
-            "</div>"
+        "<div class='container-fluid'>" +
+        "<div class='row-fuild' ng-transclude></div>" +
+        "<div class='row-fluid'>" +
+        "<div class='span12'>" +
+        "<button class='btn'>Salvar</button>" +
+        "<button class='btn'>Cancelar</button>" +
+        "</div>" +
+        "</div>" +
+        "</div>"
     }
 }
 
@@ -119,7 +103,7 @@ var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective
             (<any>(element)).fileupload(
                 {
                     dataType: 'text',
-                    disableImageResize : false,
+                    disableImageResize: false,
                     previewCrop: true,
                     add: function (e, data) {
                         $uploadManager.add(data);
@@ -135,7 +119,7 @@ var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective
                         return console.log(data);
                     }
                 }
-            );
+                );
         }
     };
 }

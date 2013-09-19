@@ -1,4 +1,6 @@
-define([], function()
+/// <reference path='../reference.ts' />
+
+define([], function ()
 {
     return {
         defaultRoutePath: '/',
@@ -11,12 +13,7 @@ define([], function()
             // },
             '/student': {
                 templateUrl: 'view/crud/student/StudentList.html',
-                dependencies: [
-                    'controller/StudentListController',
-                    'entity/VO/Telephone',
-                    'entity/base/BaseEntity',
-                    'entity/Student'
-                ]
+                dependencies: [ 'controller/StudentListController' ]
             }
         }
     };

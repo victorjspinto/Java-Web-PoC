@@ -1,11 +1,9 @@
-///<reference path='../../definitionFiles/angular/angular.d.ts'/>
-///<reference path='../entity/Student.ts'/>
-///<reference path='../service/contract/StudentServiceContract.ts'/>
+/// <reference path='../reference.ts' />
 
 module controller {
 
     export interface StudentEditViewModel extends ng.IScope {
-        students: entity.Student[];
+        students: any[];
         alerts: any[];
         refreshList: () => void;
     }
@@ -13,37 +11,19 @@ module controller {
     export class StudentListController {
 
         private scope: StudentEditViewModel;
-        private service: service.contract.StudentServiceContract;
-        private timeoutService:ng.ITimeoutService;
 
-        constructor($scope: StudentEditViewModel, 
-            $studentService: service.contract.StudentServiceContract,
-            $timeout:ng.ITimeoutService) {
+        constructor($scope: StudentEditViewModel,
+            $timeout: ng.ITimeoutService) {
             this.scope = $scope;
-            this.timeoutService = $timeout;
+            $scope.students = [{ 'name': 'Victor' }];
 
-            $scope.students = [];
-            $scope.alerts = [];
-            $scope.refreshList = this.refreshList;
-            this.scope = $scope;
-            this.service = $studentService;
-            this.refreshList();
-        }
-
-        refreshList() {
-            this.service.all((data) => { this.scope.students = data },
-                () => {
-                    var id: number = this.createAlert("Houve um erro ao consultar a lista de estudantes.", "error");
-                    this.timeoutService(() => this.closeAlert(id), 6000);
-                });
-        }
-
-        createAlert(message: String, alertType: String) {
-            return this.scope.alerts.push({ message: message, type: alertType });
-        }
-
-        closeAlert(id: number) {
-
+            console.log("StudentListController Runnin ", $scope);
         }
     }
 }
+
+console.log("Registrei a controller");
+
+(<any> angular.module('javawebpoc-html')).lazy.controller("StudentListController",
+    ["$scope", "$timeout", ($scope, $timeout) =>
+        new controller.StudentListController($scope, $timeout)]);
