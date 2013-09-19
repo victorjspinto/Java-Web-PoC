@@ -1,10 +1,12 @@
+/// <reference path="reference.ts" />
+
 require.config({
     baseUrl: '/',
     paths: {}
     // , urlArgs: 'v=1.0'
 });
 
-
+var app = {'lazy': angular.module('lazyOverride',[])};
 
 require
 (
