@@ -1,6 +1,6 @@
-///<reference path='../../definitionFiles/angular/angular.d.ts'/>
+///<reference path='../reference.ts'/>
 
-module util {
+export module util {
 
     export class UploadManager {
 

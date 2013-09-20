@@ -1,9 +1,13 @@
-///<reference path='base/AbstractCrudServiceImpl.ts'/>
-///<reference path='../contract/StudentServiceContract.ts'/>
+///<reference path='../../reference.ts'/>
+
+import student = require("../../entity/Student");
+import abstractCrudServiceImpl = require("base/AbstractCrudServiceImpl");
+import studentServiceContract = require("../contract/StudentServiceContract");
 
 module service.impl {
 
-    export class StudentServiceImpl extends base.AbstractCrudServiceImpl<entity.Student> implements contract.StudentServiceContract {
+    export class StudentServiceImpl extends abstractCrudServiceImpl.base.AbstractCrudServiceImpl<student.entity.Student>
+        implements studentServiceContract.contract.StudentServiceContract {
 
 		static $inject = ['$http'];
 

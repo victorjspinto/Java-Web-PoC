@@ -1,9 +1,10 @@
-///<reference path='../../../../definitionFiles/angular/angular.d.ts'/>
-///<reference path='../../../entity/base/BaseEntity.ts'/>
+///<reference path='../../../reference.ts'/>
 
-module service.contract.base {
+import baseEntity = require("../../entity/base/BaseEntity");
 
-    export interface CrudServiceContract<T extends entity.base.BaseEntity> {
+export module service.contract.base {
+
+    export interface CrudServiceContract<T extends baseEntity.entity.base.BaseEntity> {
 
         save(item: T,
             successCallback: (data: any, status: number, headers: (headerName: string) => string, config: ng.IRequestConfig) => any,

@@ -16,22 +16,26 @@
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="src\config\appConfig.ts" />
-    <Content Include="src\config\appRoutes.ts" />
+    <TypeScriptCompile Include="src\config\appConfig.ts" />
+    <TypeScriptCompile Include="src\config\appRoutes.ts" />
     <TypeScriptCompile Include="src\main.ts" />
-    <None Include="src\reference.ts" />
-    <Content Include="web.config" />
+    <TypeScriptCompile Include="src\reference.ts" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="app.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="web.Debug.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
-    <None Include="web.Release.config">
-      <DependentUpon>web.config</DependentUpon>
-    </None>
+    <TypeScriptCompile Include="src\controller\StudentEditController.ts" />
+    <TypeScriptCompile Include="src\controller\StudentListController.ts" />
+    <TypeScriptCompile Include="src\entity\base\BaseEntity.ts" />
+    <TypeScriptCompile Include="src\entity\Student.ts" />
+    <TypeScriptCompile Include="src\entity\VO\Telephone.ts" />
+    <TypeScriptCompile Include="src\service\contract\base\CrudServiceContract.ts" />
+    <TypeScriptCompile Include="src\service\contract\StudentServiceContract.ts" />
+    <TypeScriptCompile Include="src\service\impl\base\AbstractCrudServiceImpl.ts" />
+    <TypeScriptCompile Include="src\service\impl\StudentServiceImpl.ts" />
+    <TypeScriptCompile Include="src\service\mock\base\AbstractCrudServiceMock.ts" />
+    <TypeScriptCompile Include="src\service\mock\StudentServiceMock.ts" />
+    <TypeScriptCompile Include="src\util\ArrayUtilities.ts" />
+    <TypeScriptCompile Include="src\util\DependencyResolver.ts" />
+    <TypeScriptCompile Include="src\util\UploadManager.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

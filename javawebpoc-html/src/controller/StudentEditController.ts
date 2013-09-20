@@ -1,12 +1,13 @@
-///<reference path='../../definitionFiles/angular/angular.d.ts'/>
-///<reference path='../entity/Student.ts'/>
-///<reference path='../service/contract/StudentServiceContract.ts'/>
-///<reference path='../util/UploadManager.ts'/>
+/// <reference path="../reference.ts">
+
+import student = require("../entity/Student");
+import uploadManager = require("../util/UploadManager");
+import studentService = require("../service/contract/StudentServiceContract");
 
 module controller {
 
     export interface StudentEditViewModel extends ng.IScope {
-        student: entity.Student;
+        student: student.entity.Student;
         photos: any[];
         upload: () => void;
     }
@@ -14,8 +15,8 @@ module controller {
     export class StudentEditController {
 
         constructor(public $scope: StudentEditViewModel, $routeParams: any,
-            public $studentService: service.contract.StudentServiceContract,
-            public $uploadManager: util.UploadManager,
+            public $studentService: studentService.service.contract.StudentServiceContract,
+            public $uploadManager: uploadManager.util.UploadManager,
             public $rootScope: ng.IRootScopeService) {
 
             $scope.photos = [];

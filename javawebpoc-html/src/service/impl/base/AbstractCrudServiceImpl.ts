@@ -1,9 +1,10 @@
-///<reference path='../../../entity/base/BaseEntity.ts'/>
-///<reference path='../../contract/base/CrudServiceContract.ts'/>
-///<reference path='../../../../definitionFiles/angular/angular.d.ts'/>
+///<reference path='../../../reference.ts'/>
+
+import baseEntity = require("../../entity/base/BaseEntity");
+import crudServiceContract = require("../../contract/base/CrudServiceContract");
 
 module service.impl.base {
-    export class AbstractCrudServiceImpl<T extends entity.base.BaseEntity> implements service.contract.base.CrudServiceContract<T> {
+    export class AbstractCrudServiceImpl<T extends baseEntity.entity.base.BaseEntity> implements crudServiceContract.service.contract.base.CrudServiceContract<T> {
 
         private http: ng.IHttpService;
         private rootUrlContext: string;

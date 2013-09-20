@@ -96,31 +96,31 @@ var crudTemplate = (): ng.IDirective => {
 }
 
 
-var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective => {
-    return {
-        restrict: "A",
-        link: function (scope, element, attrs) {
-            (<any>(element)).fileupload(
-                {
-                    dataType: 'text',
-                    disableImageResize: false,
-                    previewCrop: true,
-                    add: function (e, data) {
-                        $uploadManager.add(data);
-                    },
-                    progressall: function (e, data) {
-                        var progress = data.loaded / data.total * 100;
-                        $uploadManager.setProgress(progress);
-                    },
-                    done: function (e, data) {
-                        $uploadManager.setProgress(0);
-                    },
-                    process: function (data) {
-                        return console.log(data);
-                    }
-                }
-                );
-        }
-    };
-}
+//var uploadDirectiveFactory = ($uploadManager: util.UploadManager): ng.IDirective => {
+//    return {
+//        restrict: "A",
+//        link: function (scope, element, attrs) {
+//            (<any>(element)).fileupload(
+//                {
+//                    dataType: 'text',
+//                    disableImageResize: false,
+//                    previewCrop: true,
+//                    add: function (e, data) {
+//                        $uploadManager.add(data);
+//                    },
+//                    progressall: function (e, data) {
+//                        var progress = data.loaded / data.total * 100;
+//                        $uploadManager.setProgress(progress);
+//                    },
+//                    done: function (e, data) {
+//                        $uploadManager.setProgress(0);
+//                    },
+//                    process: function (data) {
+//                        return console.log(data);
+//                    }
+//                }
+//                );
+//        }
+//    };
+//}
 
