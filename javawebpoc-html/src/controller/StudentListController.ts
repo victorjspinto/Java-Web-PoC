@@ -1,10 +1,10 @@
 /// <reference path='../reference.ts' />
-/// <amd-reference path='../service/impl/StudentServieImpl' />
+/// <amd-dependency path='../service/mock/StudentServiceMock' />
 
 export module controller {
 
     export interface StudentListViewModel extends ng.IScope {
-        students: any[];
+        students: Array<entity.Student>;
         alerts: any[];
         refreshList: () => void;
     }
@@ -13,12 +13,15 @@ export module controller {
 
         private scope: StudentListViewModel;
 
-        constructor($scope: StudentListViewModel,
-            $timeout: ng.ITimeoutService) {
-            this.scope = $scope;
-            $scope.students = [{ 'name': 'Victor' }];
+        private userService: batatinha.contract.StudentServiceContract;
 
-            console.log("StudentListController Runnin ", $scope);
+        constructor($scope: StudentListViewModel,
+            $timeout: ng.ITimeoutService,
+            $userService: batatinha.contract.StudentServiceContract) {
+
+            this.scope = $scope;
+            this.userService = $userService;
+                this.userService.all((x) => this.scope.students = x, () => { });
         }
     }
 }
@@ -26,5 +29,4 @@ export module controller {
 console.log("Registrei a controller");
 
 (<any> angular.module('javawebpoc-html')).lazy.controller("StudentListController",
-    ["$scope", "$timeout", ($scope, $timeout) =>
-        new controller.StudentListController($scope, $timeout)]);
+    ["$scope", "$timeout", "$userService", ($scope, $timeout, $userService) => new controller.StudentListController($scope, $timeout, $userService)]);

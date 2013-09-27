@@ -4,7 +4,7 @@ export module service.mock.base {
 
     export class AbstractCrudServiceMock<T extends entity.base.BaseEntity> implements batatinha.contract.base.CrudServiceContract<T> {
 
-        public repo: T[] = [];
+        public repo: Array<T> = new Array<T>();
 
         public timeoutService: ng.ITimeoutService;
 
