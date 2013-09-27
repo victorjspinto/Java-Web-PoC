@@ -1,11 +1,8 @@
 ///<reference path='../../reference.ts'/>
 
-import student = require("../../entity/Student");
-import crudService = require("base/CrudServiceContract");
+module batatinha.contract {
 
-module service.contract {
-
-    export interface StudentServiceContract extends crudService.service.contract.base.CrudServiceContract<student.entity.Student> {
+    export interface StudentServiceContract extends batatinha.contract.base.CrudServiceContract<entity.Student> {
 
     }
 

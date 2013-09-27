@@ -1,11 +1,8 @@
 ///<reference path='../../../reference.ts'/>
 
-import baseEntity = require("../../../entity/base/BaseEntity");
-import crudServiceContract = require("../../contract/base/CrudServiceContract");
+export module service.mock.base {
 
-module service.mock.base {
-
-    export class AbstractCrudServiceMock<T extends baseEntity.entity.base.BaseEntity> implements crudServiceContract.contract.base.CrudServiceContract<T> {
+    export class AbstractCrudServiceMock<T extends entity.base.BaseEntity> implements batatinha.contract.base.CrudServiceContract<T> {
 
         public repo: T[] = [];
 

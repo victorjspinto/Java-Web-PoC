@@ -1,10 +1,7 @@
 ///<reference path='../../../reference.ts'/>
 
-import baseEntity = require("../../entity/base/BaseEntity");
-import crudServiceContract = require("../../contract/base/CrudServiceContract");
-
-module service.impl.base {
-    export class AbstractCrudServiceImpl<T extends baseEntity.entity.base.BaseEntity> implements crudServiceContract.service.contract.base.CrudServiceContract<T> {
+export module service.impl.base {
+    export class AbstractCrudServiceImpl<T extends entity.base.BaseEntity> implements batatinha.contract.base.CrudServiceContract<T> {
 
         private http: ng.IHttpService;
         private rootUrlContext: string;

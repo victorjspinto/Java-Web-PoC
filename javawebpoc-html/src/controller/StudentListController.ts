@@ -1,8 +1,9 @@
 /// <reference path='../reference.ts' />
+/// <amd-reference path='../service/impl/StudentServieImpl' />
 
-module controller {
+export module controller {
 
-    export interface StudentEditViewModel extends ng.IScope {
+    export interface StudentListViewModel extends ng.IScope {
         students: any[];
         alerts: any[];
         refreshList: () => void;
@@ -10,9 +11,9 @@ module controller {
 
     export class StudentListController {
 
-        private scope: StudentEditViewModel;
+        private scope: StudentListViewModel;
 
-        constructor($scope: StudentEditViewModel,
+        constructor($scope: StudentListViewModel,
             $timeout: ng.ITimeoutService) {
             this.scope = $scope;
             $scope.students = [{ 'name': 'Victor' }];

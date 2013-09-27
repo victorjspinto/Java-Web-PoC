@@ -6,7 +6,6 @@
 //grunt-start
 /// <reference path="config/appConfig.ts" />
 /// <reference path="config/appRoutes.ts" />
-/// <reference path="controller/StudentEditController.ts" />
 /// <reference path="controller/StudentListController.ts" />
 /// <reference path="entity/Student.ts" />
 /// <reference path="entity/VO/Telephone.ts" />

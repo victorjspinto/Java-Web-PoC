@@ -52,9 +52,9 @@ declare module ng {
         isUndefined(value: any): boolean;
         lowercase(str: string): string;
         /** construct your angular application
-		official docs: Interface for configuring angular modules.
-		see: http://docs.angularjs.org/api/angular.Module
-		*/
+        official docs: Interface for configuring angular modules.
+        see: http://docs.angularjs.org/api/angular.Module
+        */
         module(
             /** name of your module you want to create */
             name: string,
@@ -117,6 +117,8 @@ declare module ng {
         // Properties
         name: string;
         requires: string[];
+
+        lazy: any;
     }
 
     ///////////////////////////////////////////////////////////////////////////

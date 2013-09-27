@@ -1,7 +1,7 @@
-export module entity.base {
-    export class BaseEntity {
+module entity.base {
+    export interface BaseEntity {
         
-        constructor(public id: number) {
-        }
+        id:number;
+
     }
 }
