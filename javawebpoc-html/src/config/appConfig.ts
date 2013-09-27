@@ -1,6 +1,6 @@
 ///<reference path='../reference.ts' />
 
-define(['config/appRoutes', 'util/DependencyResolver'], function (config, dependencyResolverFor) {
+define(['config/appRoutes', 'util/DependencyResolver', 'angular'], function (config, dependencyResolverFor, angular) {
     var app = angular.module('javawebpoc-html', ['lazyOverride']);
 
     app.config(

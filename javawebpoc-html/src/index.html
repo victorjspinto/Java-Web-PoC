@@ -14,12 +14,14 @@
     <link rel="stylesheet" href="lib/animate.css/animate.css" />
 
     <!-- Dependencies -->
-    <script src="lib/jquery/jquery.js"></script>
-    <script src="lib/jquery-ui/ui/jquery.ui.widget.js"></script>
+    <!--    <script src="lib/jquery/jquery.js"></script>
+
     <script src="lib/bootstrap/docs/assets/js/bootstrap.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular.min.js"></script>
-
+    
+    
+    <script src="lib/jquery-ui/ui/jquery.ui.widget.js"></script>
     <script src="lib/angular-bootstrap/ui-bootstrap.js"></script>
     <script src="lib/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
@@ -32,7 +34,7 @@
     <script src="lib/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
     <script src="lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
 
-    <!-- APP -->
+     APP -->
     <!-- <script src="config/appConfig.js"></script>
     <script src="entity/base/BaseEntity.js"></script>
     <script src="entity/Student.js"></script>
@@ -46,36 +48,13 @@
 
 </head>
 <body>
-
-    <!-- Login -->
-    <div class="container">
-        <div class="row">
-            <div class="span4 offset4 well">
-                <legend>Please Sign In</legend>
-                <div class="alert alert-error">
-                    <a class="close" data-dismiss="alert" href="#">×</a>Incorrect Username or Password!
-                </div>
-                <form method="POST" action="" accept-charset="UTF-8">
-                    <input type="text" id="username" class="span4" name="username" placeholder="Username">
-                    <input type="password" id="password" class="span4" name="password" placeholder="Password">
-                    <label class="checkbox">
-                        <input type="checkbox" name="remember" value="1"> Remember Me
-                    </label>
-                    <button type="submit" name="submit" class="btn btn-info btn-block">Sign in</button>
-                </form>    
-            </div>
-        </div>
-    </div>
-
-
-
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
                 <div class="navbar">
                     <div class="navbar-inner">
                         <div class="container-fluid">
-                             <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a> <a href="/" class="brand">Home</a>
+                            <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></a><a href="/" class="brand">Home</a>
                             <div class="nav-collapse collapse navbar-responsive-collapse">
                                 <ul class="nav">
                                     <li class="active">
@@ -88,7 +67,7 @@
                                         <a href="#">Link</a>
                                     </li>
                                     <li class="dropdown">
-                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown<strong class="caret"></strong></a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown<strong class="caret"></strong></a>
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <a href="#">Action</a>
@@ -99,10 +78,8 @@
                                             <li>
                                                 <a href="#">Something else here</a>
                                             </li>
-                                            <li class="divider">
-                                            </li>
-                                            <li class="nav-header">
-                                                Nav header
+                                            <li class="divider"></li>
+                                            <li class="nav-header">Nav header
                                             </li>
                                             <li>
                                                 <a href="#">Separated link</a>
@@ -117,10 +94,9 @@
                                     <li>
                                         <a href="#">Link</a>
                                     </li>
-                                    <li class="divider-vertical">
-                                    </li>
+                                    <li class="divider-vertical"></li>
                                     <li class="dropdown">
-                                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown<strong class="caret"></strong></a>
+                                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Dropdown<strong class="caret"></strong></a>
                                         <ul class="dropdown-menu">
                                             <li>
                                                 <a href="#">Action</a>
@@ -131,8 +107,7 @@
                                             <li>
                                                 <a href="#">Something else here</a>
                                             </li>
-                                            <li class="divider">
-                                            </li>
+                                            <li class="divider"></li>
                                             <li>
                                                 <a href="#">Separated link</a>
                                             </li>
@@ -140,14 +115,13 @@
                                     </li>
                                 </ul>
                             </div>
-                            
+
                         </div>
                     </div>
-                    
+
                 </div>
                 <div class="page-header">
-                    <h1>
-                        Java web PoC <small>AngularJS - Twitter Bootstrap</small>
+                    <h1>Java web PoC <small>AngularJS - Twitter Bootstrap</small>
                     </h1>
                 </div>
             </div>
@@ -155,13 +129,11 @@
         <div class="row-fluid">
             <div class="span8">
                 <div id="ng-view" data-ng-view data-ng-animate="{enter:'animated fadeInLeft'}">
-
                 </div>
             </div>
             <div class="span4" style="position: relative;">
                 <ul class="nav nav-list">
-                    <li class="nav-header">
-                        List header
+                    <li class="nav-header">List header
                     </li>
                     <li class="active">
                         <a href="#">Crud</a>
@@ -172,8 +144,7 @@
                     <li>
                         <a href="#">Home</a>
                     </li>
-                    <li class="nav-header">
-                        Another list header
+                    <li class="nav-header">Another list header
                     </li>
                     <li>
                         <a href="#">Profile</a>
@@ -181,8 +152,7 @@
                     <li>
                         <a href="#">Settings</a>
                     </li>
-                    <li class="divider">
-                    </li>
+                    <li class="divider"></li>
                     <li>
                         <a href="#">Help</a>
                     </li>
