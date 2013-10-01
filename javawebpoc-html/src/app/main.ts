@@ -1,12 +1,12 @@
 /// <reference path="reference.ts" />
 
 require.config({
-    baseUrl: '/app',
+    baseUrl: '/app/',
 
     paths: {
         'jquery': 'http://code.jquery.com/jquery-1.8.3.min',
         'angular': 'http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular',
-        'bootstrap': 'lib/bootstrap/dist/js/bootstrap'
+        'bootstrap': '../lib/bootstrap/dist/js/bootstrap'
     },
 
     shim: {

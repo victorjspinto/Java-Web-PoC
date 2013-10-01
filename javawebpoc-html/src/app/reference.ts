@@ -1,6 +1,6 @@
-/// <reference path="../definitionFiles/angular/angular.d.ts" />
-/// <reference path="../definitionFiles/jquery/jquery.d.ts" />
-/// <reference path="../definitionFiles/requirejs/require.d.ts" />
+/// <reference path="../../definitionFiles/angular/angular.d.ts" />
+/// <reference path="../../definitionFiles/jquery/jquery.d.ts" />
+/// <reference path="../../definitionFiles/requirejs/require.d.ts" />
 
 
 //grunt-start
