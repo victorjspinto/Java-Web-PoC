@@ -47,13 +47,14 @@
     <script src="controller/StudentListController.js"></script>
     <script src="controller/StudentEditController.js"></script>
     <script src="util/UploadManager.js"></script> -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="/lib/requirejs/require.js" data-main="./app/main"></script>
 
 </head>
 <body class="background-dark">
 
 <div class="logo">
-    <h4>ola!!</h4>
+    <h4>Java-Web-PoC</h4>
 </div>
 
 <!-- Sidebar menu -->
@@ -62,7 +63,7 @@
         <li >
             <a href=""><i class="icon-home"></i> <span class="name">Principal</span></a>
         </li>
-            <li class="panel">
+        <li class="panel">
             <a class="accordion-toggle collapsed" data-toggle="collapse"
                data-parent="#side-nav" href="#forms-collapse"><i class="icon-edit"></i> <span class="name">Cadastros</span></a>
             <ul id="forms-collapse" class="panel-collapse collapse">
@@ -79,7 +80,7 @@
 <!-- Main -->
 <div class="wrap">
     <div class="content container"> 
-    <div ng-view></div>
+        <div ng-view></div>
     </div>
 </div>
 
