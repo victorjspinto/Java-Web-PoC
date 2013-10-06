@@ -1,12 +1,12 @@
 /// <reference path="reference.ts" />
 
 require.config({
-    baseUrl: '/app/',
+    baseUrl: '/app',
 
     paths: {
-        'jquery': 'http://code.jquery.com/jquery-1.8.3.min',
-        'angular': 'http://ajax.googleapis.com/ajax/libs/angularjs/1.1.5/angular',
-        'bootstrap': '../lib/bootstrap/dist/js/bootstrap'
+        'jquery': './../lib/jquery/jquery',
+        'angular': './../lib/angular/angular',
+        'bootstrap': './../lib/bootstrap/dist/js/bootstrap'
     },
 
     shim: {
@@ -15,19 +15,19 @@ require.config({
         },
         angular: {
             exports: 'angular',
-            depends: ['jquery']
+            deps: ['jquery']
         },
         bootstrap: {
-            depends: ['jquery']
+            deps: ['jquery']
         }
     }
     // , urlArgs: 'v=1.0'
 });
 
 
-require([ 'jquery', 'config/appConfig','angular', 'bootstrap'],
-    function (config) {
+require(['config/appConfig','angular','bootstrap'],
+    (config: any) => {
         var app = { 'lazy': angular.module('lazyOverride', []) };
         angular.bootstrap(document, ['javawebpoc-html']);
     }
-    );
+);
