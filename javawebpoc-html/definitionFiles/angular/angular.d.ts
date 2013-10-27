@@ -10,7 +10,7 @@ declare var angular: ng.IAngularStatic;
 
 // Support for painless dependency injection
 interface Function {
-    $inject:string[];
+    $inject: string[];
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -52,9 +52,9 @@ declare module ng {
         isUndefined(value: any): boolean;
         lowercase(str: string): string;
         /** construct your angular application
-		official docs: Interface for configuring angular modules.
-		see: http://docs.angularjs.org/api/angular.Module
-		*/
+        official docs: Interface for configuring angular modules.
+        see: http://docs.angularjs.org/api/angular.Module
+        */
         module(
             /** name of your module you want to create */
             name: string,
@@ -82,21 +82,21 @@ declare module ng {
         animation(name: string, inlineAnnotadedFunction: any[]): IModule;
         animation(object: Object): IModule;
         /** configure existing services.  
-		Use this method to register work which needs to be performed on module loading
-		 */
+        Use this method to register work which needs to be performed on module loading
+         */
         config(configFn: Function): IModule;
         /** configure existing services.  
-		Use this method to register work which needs to be performed on module loading
-		 */
+        Use this method to register work which needs to be performed on module loading
+         */
         config(inlineAnnotadedFunction: any[]): IModule;
         constant(name: string, value: any): IModule;
         constant(object: Object): IModule;
         controller(name: string, controllerConstructor: Function): IModule;
         controller(name: string, inlineAnnotadedConstructor: any[]): IModule;
-        controller(object : Object): IModule;
-        directive(name: string, directiveFactory: (...params:any[])=> IDirective): IModule;
+        controller(object: Object): IModule;
+        directive(name: string, directiveFactory: (...params: any[]) => IDirective): IModule;
         directive(name: string, inlineAnnotadedFunction: any[]): IModule;
-        directive(object: Object): IModule;        
+        directive(object: Object): IModule;
         factory(name: string, serviceFactoryFunction: Function): IModule;
         factory(name: string, inlineAnnotadedFunction: any[]): IModule;
         factory(object: Object): IModule;
@@ -117,6 +117,16 @@ declare module ng {
         // Properties
         name: string;
         requires: string[];
+
+        lazy: ILazySupport;
+    }
+
+    interface ILazySupport {
+        controller: IControlerProvider;
+        directive: ICompileProvider;
+        filter: IServiceProvider;
+        factory: IServiceProvider;
+        service: IServiceProvider;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -125,7 +135,7 @@ declare module ng {
     ///////////////////////////////////////////////////////////////////////////
     interface IAttributes {
         $set(name: string, value: any): void;
-        $observe(name: string, fn:(value?:any)=>any):void;
+        $observe(name: string, fn: (value?: any) => any): void;
         $attr: any;
     }
 
@@ -208,7 +218,7 @@ declare module ng {
         $watch(watchExpression: string, listener?: (newValue: any, oldValue: any, scope: IScope) => any, objectEquality?: boolean): Function;
         $watch(watchExpression: (scope: IScope) => any, listener?: string, objectEquality?: boolean): Function;
         $watch(watchExpression: (scope: IScope) => any, listener?: (newValue: any, oldValue: any, scope: IScope) => any, objectEquality?: boolean): Function;
-        
+
         $parent: IScope;
 
         $id: number;
@@ -229,13 +239,13 @@ declare module ng {
     // WindowService
     // see http://docs.angularjs.org/api/ng.$window
     ///////////////////////////////////////////////////////////////////////////
-    interface IWindowService extends Window {}
+    interface IWindowService extends Window { }
 
     ///////////////////////////////////////////////////////////////////////////
     // BrowserService
     // TODO undocumented, so we need to get it from the source code
     ///////////////////////////////////////////////////////////////////////////
-    interface IBrowserService {}
+    interface IBrowserService { }
 
     ///////////////////////////////////////////////////////////////////////////
     // TimeoutService
@@ -381,7 +391,7 @@ declare module ng {
     // DocumentService
     // see http://docs.angularjs.org/api/ng.$document
     ///////////////////////////////////////////////////////////////////////////
-    interface IDocumentService extends Document {}
+    interface IDocumentService extends Document { }
 
     ///////////////////////////////////////////////////////////////////////////
     // ExceptionHandlerService
@@ -395,7 +405,7 @@ declare module ng {
     // RootElementService
     // see http://docs.angularjs.org/api/ng.$rootElement
     ///////////////////////////////////////////////////////////////////////////
-    interface IRootElementService extends JQuery {}
+    interface IRootElementService extends JQuery { }
 
     ///////////////////////////////////////////////////////////////////////////
     // QService
@@ -445,7 +455,7 @@ declare module ng {
 
         // Methods bellow are not documented
         info(): any;
-        get (cacheId: string): ICacheObject;
+        get(cacheId: string): ICacheObject;
     }
 
     interface ICacheObject {
@@ -457,7 +467,7 @@ declare module ng {
             //capacity: number;
         };
         put(key: string, value?: any): void;
-        get (key: string): any;
+        get(key: string): any;
         remove(key: string): void;
         removeAll(): void;
         destroy(): void;
@@ -509,8 +519,8 @@ declare module ng {
     interface IHttpService {
         // At least moethod and url must be provided...
         (config: IRequestConfig): IHttpPromise<any>;
-        get (url: string, RequestConfig?: any): IHttpPromise<any>;
-        delete (url: string, RequestConfig?: any): IHttpPromise<any>;
+        get(url: string, RequestConfig?: any): IHttpPromise<any>;
+        delete(url: string, RequestConfig?: any): IHttpPromise<any>;
         head(url: string, RequestConfig?: any): IHttpPromise<any>;
         jsonp(url: string, RequestConfig?: any): IHttpPromise<any>;
         post(url: string, data: any, RequestConfig?: any): IHttpPromise<any>;
@@ -601,19 +611,19 @@ declare module ng {
     // RouteParamsService
     // see http://docs.angularjs.org/api/ng.$routeParams
     ///////////////////////////////////////////////////////////////////////////
-    interface IRouteParamsService {}
+    interface IRouteParamsService { }
 
     ///////////////////////////////////////////////////////////////////////////
     // TemplateCacheService
     // see http://docs.angularjs.org/api/ng.$templateCache
     ///////////////////////////////////////////////////////////////////////////
-    interface ITemplateCacheService extends ICacheObject {}
+    interface ITemplateCacheService extends ICacheObject { }
 
     ///////////////////////////////////////////////////////////////////////////
     // RootScopeService
     // see http://docs.angularjs.org/api/ng.$rootScope
     ///////////////////////////////////////////////////////////////////////////
-    interface IRootScopeService extends IScope {}
+    interface IRootScopeService extends IScope { }
 
     ///////////////////////////////////////////////////////////////////////////
     // RouteService
@@ -654,14 +664,14 @@ declare module ng {
         otherwise(params: any): IRouteProvider;
         when(path: string, route: IRoute): IRouteProvider;
     }
-    
+
     ///////////////////////////////////////////////////////////////////////////
     // Directive
     // see http://docs.angularjs.org/api/ng.$compileProvider#directive
     // and http://docs.angularjs.org/guide/directive
     ///////////////////////////////////////////////////////////////////////////
 
-    interface IDirective{
+    interface IDirective {
         priority?: number;
         template?: string;
         templateUrl?: string;
@@ -718,7 +728,7 @@ declare module ng {
         interface IInjectorService {
             annotate(fn: Function): string[];
             annotate(inlineAnnotadedFunction: any[]): string[];
-            get (name: string): any;
+            get(name: string): any;
             instantiate(typeConstructor: Function, locals?: any): any;
             invoke(func: Function, context?: any, locals?: any): any;
         }
