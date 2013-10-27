@@ -10,7 +10,8 @@
     "jquery-ui": "~1.10.3",
     "animate.css": "~2.1.0",
     "requirejs": "~2.1.8",
-    "angular-route": "~1.2.0-rc.2"
+    "angular-route": "~1.2.0-rc.2",
+    "requirejs-text": "~2.0.10"
   },
   "exportsOverride": {
     "bootstrap-sass": {
@@ -27,5 +28,8 @@
     "node_modules",
     "components"
   ],
-  "devDependencies": {}
+  "devDependencies": {},
+  "resolutions": {
+    "angular": "1.2.0-rc.2"
+  }
 }

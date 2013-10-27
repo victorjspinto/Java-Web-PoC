@@ -7,7 +7,8 @@ require.config({
         'jquery': '../lib/jquery/jquery',
         'angular': '../lib/angular/angular',
         'angularRoute': '../lib/angular-route/angular-route',
-        'bootstrap': '../lib/bootstrap/dist/js/bootstrap'
+        'bootstrap': '../lib/bootstrap/dist/js/bootstrap',
+        'text': '../lib/requirejs-text/text',
     },
 
     shim: {
@@ -23,7 +24,11 @@ require.config({
             exports: 'angularRoute'
         },
         bootstrap: {
-            deps: ['jquery']
+            deps: ['jquery','text!./../lib/bootstrap/dist/css/bootstrap.min.css'],
+            init: ($: JQueryStatic, css: any) => {
+                var el = $('<style></style>').append(css);
+                $('head').append(el);
+            }
         }
     }
     // , urlArgs: 'v=1.0'
