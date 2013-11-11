@@ -16,11 +16,7 @@ public class RestAuthenticationFailureHandler implements
 	public void onAuthenticationFailure(HttpServletRequest request,
 			HttpServletResponse response, AuthenticationException exception)
 			throws IOException, ServletException {
-		if (request.getMethod().equals("POST")) {
-			response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
-					"Bad credentials");
-		} else {
-			response.sendError(HttpServletResponse.SC_NOT_FOUND);
-		}
+		response.sendError(HttpServletResponse.SC_UNAUTHORIZED,
+				"Bad credentials");
 	}
 }
