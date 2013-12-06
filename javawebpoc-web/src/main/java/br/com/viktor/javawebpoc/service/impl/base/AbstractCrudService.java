@@ -3,7 +3,6 @@ package br.com.viktor.javawebpoc.service.impl.base;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import br.com.viktor.javawebpoc.entity.base.AbstractEntity;
 import br.com.viktor.javawebpoc.exception.alreadyExists.AlreadyExistsException;
@@ -25,7 +24,7 @@ public abstract class AbstractCrudService<T extends AbstractEntity> implements
 		this.repository = repository;
 	}
 
-	@Transactional(readOnly = false, rollbackFor = Exception.class)
+	@Override
 	public void save(T entity) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
 
 		checkIfNull(entity);
@@ -37,23 +36,22 @@ public abstract class AbstractCrudService<T extends AbstractEntity> implements
 		repository.save(entity);
 	}
 
-	@Transactional(readOnly = false, rollbackFor = Exception.class)
+	@Override
 	public void delete(T entity) throws NotFoundException {
 		repository.delete(entity);
 	}
 
-	@Transactional(readOnly = false, rollbackFor = Exception.class)
+	@Override
 	public void update(T entity) throws NotFoundException {
 		repository.save(entity);
-
 	}
 
-	@Transactional(readOnly = true)
+	@Override
 	public List<T> list() {
 		return repository.findAll();
 	}
 
-	@Transactional(readOnly = true, rollbackFor = Exception.class)
+	@Override
 	public T get(T entity) throws NotFoundException {
 		return repository.findOne(entity.getId());
 	}

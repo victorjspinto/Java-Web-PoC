@@ -15,43 +15,43 @@ import br.com.viktor.javawebpoc.exception.alreadyExists.AlreadyExistsException;
 import br.com.viktor.javawebpoc.exception.invalidArgument.InvalidArgumentException;
 import br.com.viktor.javawebpoc.exception.invalidArgument.NullArgumentException;
 import br.com.viktor.javawebpoc.exception.notFound.NotFoundException;
-import br.com.viktor.javawebpoc.service.contract.base.AbstractCrudContract;
+import br.com.viktor.javawebpoc.facade.base.AbstractCrudFacade;
 
 public class AbstractCrudController<T extends AbstractEntity> {
 
-	protected AbstractCrudContract<T> service;
+	protected AbstractCrudFacade<T> facade;
 
-	public AbstractCrudController(AbstractCrudContract<T> service) {
-		this.service = service;
+	public AbstractCrudController(AbstractCrudFacade<T> facade) {
+		this.facade = facade;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public List<T> list() {
-		return service.list();
+		return facade.list();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public T find(@PathVariable("id") long id) throws NotFoundException, NullArgumentException {
-		return service.find(id);
+		return facade.find(id);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public void save(@ModelAttribute T data) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
-		service.save(data);
+		facade.save(data);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void update(@ModelAttribute T data) throws NotFoundException, NullArgumentException {
-		service.update(data);
+		facade.update(data);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.OK)
 	public void delete(@PathVariable("id") Long id) throws NotFoundException, NullArgumentException {
-		service.delete(id);
+		facade.delete(id);
 	}
 }
