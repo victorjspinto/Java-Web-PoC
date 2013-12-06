@@ -8,15 +8,14 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import br.com.viktor.javawebpoc.entity.Student;
-import br.com.viktor.javawebpoc.exception.EntityExistsException;
-import br.com.viktor.javawebpoc.exception.InvalidArgumentException;
+import br.com.viktor.javawebpoc.exception.alreadyExists.StudentExistsException;
+import br.com.viktor.javawebpoc.exception.invalidArgument.InvalidStudentException;
 import br.com.viktor.javawebpoc.repository.StudentRepositoryContract;
 import br.com.viktor.javawebpoc.service.contract.StudentServiceContract;
 import br.com.viktor.javawebpoc.service.impl.base.AbstractCrudService;
 
 @Service
-public class StudentService extends AbstractCrudService<Student> implements
-		StudentServiceContract {
+public class StudentService extends AbstractCrudService<Student> implements StudentServiceContract {
 
 	protected StudentRepositoryContract studentRepository;
 
@@ -27,16 +26,14 @@ public class StudentService extends AbstractCrudService<Student> implements
 	}
 
 	@Override
-	protected void checkBussinessKey(Student entity)
-			throws EntityExistsException {
+	protected void checkBussinessKey(Student entity) throws StudentExistsException {
 		Student test = this.studentRepository.findByName(entity.getName());
 		if (test != null)
-			throw new EntityExistsException(
-					"Ja existe um estudante com o nome informado", test);
+			throw new StudentExistsException(test);
 	}
 
 	@Override
-	protected void checkIfValid(Student entity) throws InvalidArgumentException {
+	protected void checkIfValid(Student entity) throws InvalidStudentException {
 		Map<String, String> validationResult = new HashMap<String, String>();
 
 		if (entity.getName() == null)
@@ -48,6 +45,6 @@ public class StudentService extends AbstractCrudService<Student> implements
 		}
 		
 		if(validationResult.size() > 0)
-			throw new InvalidArgumentException("O Estudante possui dados invalidos.", validationResult);
+			throw new InvalidStudentException(validationResult);
 	}
 }
