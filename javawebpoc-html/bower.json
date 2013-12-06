@@ -2,12 +2,16 @@
   "name": "javawebpoc-html",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "~1.0.7",
+    "angular": "1.2.0-rc.2",
     "bootstrap": "~3.0.0",
     "jquery": "~2.0.3",
-    "angular-bootstrap": "~0.4.0",
+    "angular-bootstrap": "0.6.0",
     "blueimp-file-upload": "~8.6.0",
-    "jquery-ui": "~1.10.3"
+    "jquery-ui": "~1.10.3",
+    "animate.css": "~2.1.0",
+    "requirejs": "~2.1.8",
+    "angular-route": "~1.2.0-rc.2",
+    "requirejs-text": "~2.0.10"
   },
   "exportsOverride": {
     "bootstrap-sass": {
@@ -23,9 +27,5 @@
     "**/.*",
     "node_modules",
     "components"
-  ],
-  "devDependencies": {
-    "animate.css": "~2.1.0",
-    "requirejs": "~2.1.8"
-  }
+  ]
 }

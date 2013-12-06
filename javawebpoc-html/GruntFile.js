@@ -50,6 +50,16 @@ module.exports = function (grunt) {
             dev: {
                 path: 'http://localhost:8080/index.html'
             }
+        },
+        less: {
+            dev: {
+                options: {
+                    paths: ["src/style"]
+                },
+                files: {
+                    "src/style/main.css": "src/style/main.less"
+                }
+            }
         }
     });
 
@@ -60,9 +70,10 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-open');
+    grunt.loadNpmTasks('grunt-contrib-less');
 
     // Default task(s).
-    grunt.registerTask('default', ['connect', 'open', 'ts:dev']);
+    grunt.registerTask('default', ['connect', 'open', 'less:dev', 'ts:dev']);
     grunt.registerTask('build', ['typescript', 'uglify']);
 
 };
