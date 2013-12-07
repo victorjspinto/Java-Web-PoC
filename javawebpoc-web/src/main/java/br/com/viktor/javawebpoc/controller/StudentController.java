@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.viktor.javawebpoc.controller.base.AbstractCrudController;
 import br.com.viktor.javawebpoc.entity.Student;
-import br.com.viktor.javawebpoc.service.contract.StudentServiceContract;
+import br.com.viktor.javawebpoc.facade.StudentFacade;
 
 @Controller
 @RequestMapping("/student")
 public class StudentController extends AbstractCrudController<Student>  {
 
 	@Inject
-	public StudentController(StudentServiceContract service) {
-		super(service);
+	public StudentController(StudentFacade facade) {
+		super(facade);
 	}
 	
 }
