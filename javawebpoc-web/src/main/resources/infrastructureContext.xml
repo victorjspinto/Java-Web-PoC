@@ -12,6 +12,7 @@
 
 	<context:annotation-config></context:annotation-config>
 
+	<context:component-scan base-package="br.com.viktor.javawebpoc.facade" />
 	<context:component-scan base-package="br.com.viktor.javawebpoc.service.impl" />
 	<context:component-scan base-package="br.com.viktor.javawebpoc.repository" />
 	<context:component-scan base-package="br.com.viktor.javawebpoc.controller" />
