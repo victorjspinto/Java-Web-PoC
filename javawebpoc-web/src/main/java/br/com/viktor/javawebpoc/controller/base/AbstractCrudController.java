@@ -2,13 +2,21 @@ package br.com.viktor.javawebpoc.controller.base;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.viktor.javawebpoc.entity.base.AbstractEntity;
 import br.com.viktor.javawebpoc.exception.alreadyExists.AlreadyExistsException;
@@ -38,9 +46,14 @@ public class AbstractCrudController<T extends AbstractEntity> {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public void save(@ModelAttribute T data) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
+	public ResponseEntity<Void> save(@RequestBody T data, UriComponentsBuilder cp, HttpServletRequest request, HttpServletResponse response) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
+		UriComponents uriComponent = cp.path(request.getPathInfo() + "/{id}").buildAndExpand(1L);
 		facade.save(data);
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.setLocation(uriComponent.toUri());
+		
+		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
