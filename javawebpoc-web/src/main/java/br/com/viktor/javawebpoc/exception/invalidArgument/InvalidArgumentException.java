@@ -1,6 +1,8 @@
 package br.com.viktor.javawebpoc.exception.invalidArgument;
 
-import java.util.Map;
+import java.util.List;
+
+import org.springframework.validation.ObjectError;
 
 import br.com.viktor.javawebpoc.exception.JavaWebPoCException;
 import br.com.viktor.javawebpoc.l10n.MessageKey;
@@ -8,25 +10,27 @@ import br.com.viktor.javawebpoc.l10n.MessageKey;
 public class InvalidArgumentException extends JavaWebPoCException {
 
 	private static final long serialVersionUID = -3625290134962357049L;
-	private Map<String, String> validationResult;
+	private List<ObjectError> errors;
 
 	public InvalidArgumentException() {
 		super(MessageKey.INVALIDARGUMENT_EXCEPTION, new Object[] {});
 	}
 	
-	public InvalidArgumentException(Map<String, String> validationResult) {
-		this.validationResult = validationResult;
+	public InvalidArgumentException(List<ObjectError> errors) {
+		this(MessageKey.INVALIDARGUMENT_EXCEPTION, errors);
+	}
+	
+	protected InvalidArgumentException(MessageKey key, List<ObjectError> errors) {
+		super(key, errors.toArray());
+		this.setErrors(errors);
 	}
 
-	protected InvalidArgumentException(MessageKey key, Object[] args) {
-		super(key, args);
+	public List<ObjectError> getErrors() {
+		return errors;
 	}
 
-	public Map<String, String> getValidationResult() {
-		return validationResult;
+	public void setErrors(List<ObjectError> errors) {
+		this.errors = errors;
 	}
 
-	public void setValidationResult(Map<String, String> validationResult) {
-		this.validationResult = validationResult;
-	}
 }
