@@ -17,8 +17,8 @@ public abstract class AbstractCrudFacade<T extends AbstractEntity> {
 		this.abstractCrud = abstractCrud;
 	}
 	
-	public void save(T entity) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
-		this.abstractCrud.save(entity);
+	public T save(T entity) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
+		return this.abstractCrud.save(entity);
 	}
 	
 	public void delete(T entity) throws NotFoundException, NullArgumentException {

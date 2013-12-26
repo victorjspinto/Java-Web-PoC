@@ -50,9 +50,9 @@ public abstract class AbstractCrudController<T extends AbstractEntity> {
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Void> save(@Valid @RequestBody T data, BindingResult bindingResult, UriComponentsBuilder cp, HttpServletRequest request, HttpServletResponse response) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
 		validationResult(bindingResult);
+		T entity = facade.save(data);
 		
-		UriComponents uriComponent = cp.path(request.getPathInfo() + "/{id}").buildAndExpand(1L);
-		facade.save(data);
+		UriComponents uriComponent = cp.path(request.getPathInfo() + "/{id}").buildAndExpand(entity.getId());
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uriComponent.toUri());
