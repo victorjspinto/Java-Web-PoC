@@ -25,7 +25,7 @@ public abstract class AbstractCrudService<T extends AbstractEntity> implements
 	}
 
 	@Override
-	public void save(T entity) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
+	public T save(T entity) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
 
 		checkIfNull(entity);
 
@@ -33,7 +33,7 @@ public abstract class AbstractCrudService<T extends AbstractEntity> implements
 
 		checkBussinessKey(entity);
 
-		repository.save(entity);
+		return repository.save(entity);
 	}
 
 	@Override

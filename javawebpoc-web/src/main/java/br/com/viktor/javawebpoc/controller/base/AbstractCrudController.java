@@ -4,10 +4,12 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,7 +27,7 @@ import br.com.viktor.javawebpoc.exception.invalidArgument.NullArgumentException;
 import br.com.viktor.javawebpoc.exception.notFound.NotFoundException;
 import br.com.viktor.javawebpoc.facade.base.AbstractCrudFacade;
 
-public class AbstractCrudController<T extends AbstractEntity> {
+public abstract class AbstractCrudController<T extends AbstractEntity> {
 
 	protected AbstractCrudFacade<T> facade;
 
@@ -46,9 +48,11 @@ public class AbstractCrudController<T extends AbstractEntity> {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> save(@RequestBody T data, UriComponentsBuilder cp, HttpServletRequest request, HttpServletResponse response) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
-		UriComponents uriComponent = cp.path(request.getPathInfo() + "/{id}").buildAndExpand(1L);
-		facade.save(data);
+	public ResponseEntity<Void> save(@Valid @RequestBody T data, BindingResult bindingResult, UriComponentsBuilder cp, HttpServletRequest request, HttpServletResponse response) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
+		validationResult(bindingResult);
+		T entity = facade.save(data);
+		
+		UriComponents uriComponent = cp.path(request.getPathInfo() + "/{id}").buildAndExpand(entity.getId());
 		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uriComponent.toUri());
@@ -67,4 +71,7 @@ public class AbstractCrudController<T extends AbstractEntity> {
 	public void delete(@PathVariable("id") Long id) throws NotFoundException, NullArgumentException {
 		facade.delete(id);
 	}
+	
+	protected abstract void validationResult(BindingResult bindingResult) throws InvalidArgumentException;
+	
 }
