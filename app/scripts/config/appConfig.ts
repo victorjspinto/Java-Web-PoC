@@ -2,7 +2,9 @@
 
 var app = angular.module('javawebpoc-html', []);
 
-app.service("$studentService", ($timeout: ng.ITimeoutService) => new service.mock.StudentServiceMock($timeout) );
+app.service("$studentService", 
+    ($timeout: ng.ITimeoutService) => new service.mock.StudentServiceMock($timeout) 
+);
 
 app.controller("studentListController",
     ($scope:controller.StudentListViewModel, $studentService:service.contract.StudentServiceContract)
@@ -16,6 +18,10 @@ app.config(
                 templateUrl: 'views/cruds/student/StudentList.html',
                 controller: 'StudentListController'
             });
+        $routeProvider.when('/', {
+                templateUrl: 'main.html'
+            })
+        $routeProvider.otherwise('/');
     }
 );
 
