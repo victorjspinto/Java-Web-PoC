@@ -311,10 +311,10 @@ module.exports = function (grunt) {
                         expand: true
                     },
       //------------------------------------------------
-                    { // font awesome css
+                    { // font awesome fontfiles
                         cwd: '<%= yeoman.bowerDir %>/font-awesome/fonts/',
                         src: ['*'],
-                        dest: '<%= yeoman.temp %>/vendor/fonts/',
+                        dest: '<%= yeoman.temp %>/styles/fonts/font-awesome/',
                         expand: true
                     }
                 ]
