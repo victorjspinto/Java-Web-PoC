@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title></title>
+        <link rel="shortcut icon" href="img/favicon.png">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta charset="utf-8">
+
+        <!-- open-sans fontfaces moved from application.css -->
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,400,300,600,700' rel='stylesheet' type='text/css'>
+
+        <!-- build:css({.tmp,app}) styles/vendor.css -->
+        <link rel="stylesheet" href="styles/application.css" />
+        <link rel="stylesheet" href="styles/style.css" />
+        <link rel="stylesheet" href="vendor/css/font-awesome.min.css" />
+        <!-- endbuild -->
+    
+        <!-- build:js({.tmp,app}) scripts/vendor.js -->
+        <script src="vendor/js/jquery.min.js"></script>
+        <script src="vendor/js/bootstrap.min.js"></script>
+        <script src="vendor/js/angular.js"></script>
+        <!-- endbuild -->    
+        
+        <script src="scripts/application.js"></script>
+        
+    </head>
+    <body class="background-dark">
+
+        <div class="logo">
+            <h4><a href="/#">JavaWeb <strong>PoC</strong></a></h4>
+        </div>
+
+        <!-- Sidebar menu -->
+        <nav id="sidebar" class="sidebar nav-collapse collapse">
+            <ul id="side-nav" class="side-nav">
+                <li class="active">
+                    <a href=""><i class="fa fa-home"></i> <span class="name">Principal</span></a>
+                </li>
+                <li class="panel">
+                    <a class="accordion-toggle collapsed" data-toggle="collapse"
+                       data-parent="#side-nav" href="#forms-collapse">
+                        <i class="fa fa-edit"></i>
+                        <span class="name">Cadastros</span>
+                    </a>
+                    <ul id="forms-collapse" class="panel-collapse collapse">
+                        <li><a href="#student">Estudantes</a></li>
+                        <li><a href="form_article.html">Teste</a></li>
+                        <li><a href="form_elements.html">Teste1</a></li>
+                        <li><a href="form_validation.html">Teste2</a></li>
+                        <li><a href="form_wizard.html">Teste3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main -->
+        <div class="wrap">
+            <header class="page-header">
+                <div class="navbar">
+                    <ul class="nav navbar-nav navbar-right pull-right">
+  
+                        <li class="dropdown">
+                            <a href="#" title="Messages" id="messages"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown">
+                                <i class="fa fa-comments"></i>
+                            </a>
+                            <ul id="messages-menu" class="dropdown-menu messages" role="menu">
+                                <li role="presentation">
+                                    <a href="#" class="message">
+                                        <img src="img/1.jpg" alt="">
+                                        <div class="details">
+                                            <div class="sender">Jane Hew</div>
+                                            <div class="text">
+                                                Hey, John! How is it going? ...
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="message">
+                                        <img src="img/2.jpg" alt="">
+                                        <div class="details">
+                                            <div class="sender">Alies Rumiancaŭ</div>
+                                            <div class="text">
+                                                I'll definitely buy this template
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="message">
+                                        <img src="img/3.jpg" alt="">
+                                        <div class="details">
+                                            <div class="sender">Michał Rumiancaŭ</div>
+                                            <div class="text">
+                                                Is it really Lore ipsum? Lore ...
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="text-align-center see-all">
+                                        See all messages <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" title="8 support tickets"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown">
+                                <i class="fa fa-group"></i>
+                                <span class="count">8</span>
+                            </a>
+                            <ul id="support-menu" class="dropdown-menu support" role="menu">
+                                <li role="presentation">
+                                    <a href="#" class="support-ticket">
+                                        <div class="picture">
+                                            <span class="label label-important"><i class="fa fa-bell-o"></i></span>
+                                        </div>
+                                        <div class="details">
+                                            Check out this awesome ticket
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="support-ticket">
+                                        <div class="picture">
+                                            <span class="label label-warning"><i class="fa fa-question-circle"></i></span>
+                                        </div>
+                                        <div class="details">
+                                            "What is the best way to get ...
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="support-ticket">
+                                        <div class="picture">
+                                            <span class="label label-success"><i class="fa fa-tag"></i></span>
+                                        </div>
+                                        <div class="details">
+                                            This is just a simple notification
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="support-ticket">
+                                        <div class="picture">
+                                            <span class="label label-info"><i class="fa fa-info-circle"></i></span>
+                                        </div>
+                                        <div class="details">
+                                            12 new orders has arrived today
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="support-ticket">
+                                        <div class="picture">
+                                            <span class="label label-important"><i class="fa fa-plus"></i></span>
+                                        </div>
+                                        <div class="details">
+                                            One more thing that just happened
+                                        </div>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="text-align-center see-all">
+                                        See all tickets <i class="fa fa-arrow-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="divider"></li>
+                        <li class="hidden-xs">
+                            <a href="#" id="settings"
+                               title="Settings"
+                               data-toggle="popover"
+                               data-placement="bottom">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                        </li>
+                        <li class="hidden-xs dropdown">
+                            <a href="#" title="Account" id="account"
+                               class="dropdown-toggle"
+                               data-toggle="dropdown">
+                                <i class="fa fa-user"></i>
+                            </a>
+                            <ul id="account-menu" class="dropdown-menu account" role="menu">
+                                <li role="presentation" class="account-picture">
+                                    <img src="img/2.jpg" alt="">
+                                    Philip Daineka
+                                </li>
+                                <li role="presentation">
+                                    <a href="form_account.html" class="link">
+                                        <i class="fa fa-user"></i>
+                                        Profile
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="component_calendar.html" class="link">
+                                        <i class="fa fa-calendar"></i>
+                                        Calendar
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#" class="link">
+                                        <i class="fa fa-inbox"></i>
+                                        Inbox
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="visible-xs">
+                            <a href="#"
+                               class="btn-navbar"
+                               data-toggle="collapse"
+                               data-target=".sidebar"
+                               title="">
+                                <i class="fa fa-bars"></i>
+                            </a>
+                        </li>
+                        <li class="hidden-xs"><a href="login.html"><i class="fa fa-sign-out"></i></a></li>
+                    </ul>
+                    <form id="search-form" class="navbar-form pull-right" role="search">
+                        <input type="search" class="search-query" placeholder="Search...">
+                    </form>
+                </div>
+            </header>
+            <div class="content container">
+                <div ng-view></div>
+            </div>
+        </div>
+
+    </body>
+</html>

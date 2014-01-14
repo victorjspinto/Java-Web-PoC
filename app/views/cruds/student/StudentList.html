@@ -1,0 +1,37 @@
+<div class="container-fluid" data-ng-controller="StudentListController">
+    <div class="row-fluid">
+        <div class="span12">
+            <h3>Lista de Estudantes
+            </h3>
+
+            <div>
+                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.message}}</alert>
+            </div>
+
+
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-animate="'animate'" ng-repeat="student in students">
+                    <a href="#/student/{{student.id}}"> {{student.name}} </a>
+                </li>
+            </ul>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="info animated" data-ng-repeat="student in students" ng-animate="{enter: 'animate-enter'}">
+                        <td>{{student.id}}</td>
+                        <td><a href="#/student/{{student.id}}">{{student.name}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
