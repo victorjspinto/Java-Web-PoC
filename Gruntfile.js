@@ -296,6 +296,12 @@ module.exports = function (grunt) {
                         dest: '<%= yeoman.temp %>/vendor/js/',
                         expand: true
                     },
+                    { // angular-route
+                        cwd: '<%= yeoman.bowerDir %>/angular-route/',
+                        src: ['angular-route.js'],
+                        dest: '<%= yeoman.temp %>/vendor/js/',
+                        expand: true
+                    },
       //------------------------------------------------
                     { // jquery
                         cwd: '<%= yeoman.bowerDir %>/jquery/',
