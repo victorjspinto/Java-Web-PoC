@@ -11,14 +11,13 @@ module controller {
 
         private $scope: StudentListViewModel;
 
-        private $userService: service.contract.StudentServiceContract;
+        private $studentService: service.contract.StudentServiceContract;
 
         constructor($scope: StudentListViewModel,
-            $timeout: ng.ITimeoutService,
-            $userService: service.contract.StudentServiceContract) {
+            $studentService: service.contract.StudentServiceContract) {
 
             this.$scope = $scope;
-            this.$userService = $userService;
+            this.$studentService = $studentService;
         }
     }
 }
