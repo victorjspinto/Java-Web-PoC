@@ -1,6 +1,6 @@
 ///<reference path='../reference.ts' />
 
-var app = angular.module('javawebpoc-html', []);
+var app = angular.module('javawebpoc-html', ['ngRoute']);
 
 app.service("$studentService", 
     ($timeout: ng.ITimeoutService) => new service.mock.StudentServiceMock($timeout) 
@@ -19,7 +19,7 @@ app.config(
                 controller: 'StudentListController'
             });
         $routeProvider.when('/', {
-                templateUrl: 'main.html'
+                templateUrl: 'views/main.html'
             })
         $routeProvider.otherwise('/');
     }
