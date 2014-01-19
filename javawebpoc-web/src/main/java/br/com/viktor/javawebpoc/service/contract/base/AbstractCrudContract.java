@@ -9,7 +9,7 @@ import br.com.viktor.javawebpoc.exception.invalidArgument.NullArgumentException;
 import br.com.viktor.javawebpoc.exception.notFound.NotFoundException;
 
 public interface AbstractCrudContract<E extends AbstractEntity> {
-	public void save(E entity) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException;
+	public E save(E entity) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException;
 
 	public void update(E entity)throws NotFoundException, NullArgumentException;
 

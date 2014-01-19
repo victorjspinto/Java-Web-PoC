@@ -9,7 +9,7 @@ public class StudentExistsException extends AlreadyExistsException {
 	private Student student;
 	
 	public StudentExistsException(Student student) {
-		super(MessageKey.STUDENTEXISTS_EXCEPTION, new Object[] { student });
+		super(MessageKey.STUDENTEXISTS_EXCEPTION, new Object[] { student.toString() });
 		this.setStudent(student);
 	}
 
