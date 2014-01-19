@@ -30,7 +30,7 @@ public class GlobalExceptionHandler {
 	}
 
 	@ExceptionHandler(value = InvalidArgumentException.class)
-	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
 	@ResponseBody
 	public ErrorResponse invalidArgumentExceptionHandler(InvalidArgumentException ex, Locale locale) {
 		ErrorResponse response = ex.getMessage(messageSource, locale);
