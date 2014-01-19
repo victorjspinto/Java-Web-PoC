@@ -40,5 +40,13 @@ public class JavaWebPoCException extends Exception {
 				this.messageArgs, locale));
 		return errorResponse;
 	}
+
+	protected MessageKey getMessageKey() {
+		return messageKey;
+	}
+
+	protected Object[] getMessageArgs() {
+		return messageArgs;
+	}
 	
 }

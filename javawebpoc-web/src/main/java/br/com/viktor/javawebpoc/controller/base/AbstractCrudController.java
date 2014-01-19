@@ -10,6 +10,9 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,13 +29,33 @@ import br.com.viktor.javawebpoc.exception.invalidArgument.InvalidArgumentExcepti
 import br.com.viktor.javawebpoc.exception.invalidArgument.NullArgumentException;
 import br.com.viktor.javawebpoc.exception.notFound.NotFoundException;
 import br.com.viktor.javawebpoc.facade.base.AbstractCrudFacade;
+import br.com.viktor.javawebpoc.l10n.MessageKey;
 
 public abstract class AbstractCrudController<T extends AbstractEntity> {
 
 	protected AbstractCrudFacade<T> facade;
+	private Validator validator;
+	private MessageKey message;
 
-	public AbstractCrudController(AbstractCrudFacade<T> facade) {
+	public AbstractCrudController(AbstractCrudFacade<T> facade,
+			Validator validator, MessageKey message) {
 		this.facade = facade;
+		this.validator = validator;
+		this.message = message;
+	}
+
+	@InitBinder
+	protected void initBinder(WebDataBinder binder) {
+		// Set @Valid to use
+		binder.setValidator(validator);
+	}
+
+	protected void validationResult(BindingResult bindingResult)
+			throws InvalidArgumentException {
+		if (bindingResult.hasErrors()) {
+			throw new InvalidArgumentException(message,
+					bindingResult.getAllErrors());
+		}
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
@@ -43,35 +66,40 @@ public abstract class AbstractCrudController<T extends AbstractEntity> {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
-	public T find(@PathVariable("id") long id) throws NotFoundException, NullArgumentException {
+	public T find(@PathVariable("id") long id) throws NotFoundException,
+			NullArgumentException {
 		return facade.find(id);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Void> save(@Valid @RequestBody T data, BindingResult bindingResult, UriComponentsBuilder cp, HttpServletRequest request, HttpServletResponse response) throws AlreadyExistsException, NullArgumentException, InvalidArgumentException {
+	public ResponseEntity<Void> save(@Valid @RequestBody T data,
+			BindingResult bindingResult, UriComponentsBuilder cp,
+			HttpServletRequest request, HttpServletResponse response)
+			throws AlreadyExistsException, NullArgumentException,
+			InvalidArgumentException {
 		validationResult(bindingResult);
 		T entity = facade.save(data);
-		
-		UriComponents uriComponent = cp.path(request.getPathInfo() + "/{id}").buildAndExpand(entity.getId());
-		
+
+		UriComponents uriComponent = cp.path(request.getPathInfo() + "/{id}")
+				.buildAndExpand(entity.getId());
+
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uriComponent.toUri());
-		
+
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void update(@ModelAttribute T data) throws NotFoundException, NullArgumentException {
+	public void update(@ModelAttribute T data) throws NotFoundException,
+			NullArgumentException {
 		facade.update(data);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void delete(@PathVariable("id") Long id) throws NotFoundException, NullArgumentException {
+	public void delete(@PathVariable("id") Long id) throws NotFoundException,
+			NullArgumentException {
 		facade.delete(id);
 	}
-	
-	protected abstract void validationResult(BindingResult bindingResult) throws InvalidArgumentException;
-	
 }

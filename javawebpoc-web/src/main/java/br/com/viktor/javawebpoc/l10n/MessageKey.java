@@ -8,10 +8,14 @@ public enum MessageKey {
 	NULLARGUMENT_EXCEPTION("br.com.viktor.javawebpoc.exception.nullargumentexception"),
 	INVALIDSTUDENT_EXCEPTION("br.com.viktor.javawebpoc.exception.invalidstudentexception"),
 	NOTFOUND_EXCEPTION("br.com.viktor.javawebpoc.exception.notfoundexception"),
+
+	VALIDATION_INVALID("br.com.viktor.javawebpoc.validation.invalid"),
+	VALIDATION_FIELD_REQUIRED("br.com.viktor.javawebpoc.validation.fieldrequired"),
+	VALIDATION_STRINGLENGTH("br.com.viktor.javawebpoc.validation.stringlength"),
 	
-	STUDENTINVALID_VALIDATION("br.com.viktor.javawebpoc.validation.studentinvalid"),
-	STUDENTNAMENULL_VALIDATION("br.com.viktor.javawebpoc.validation.studentnamenull"),
-	STUDENTNAMESIZE_VALIDATION("br.com.viktor.javawebpoc.validation.studentnamesize");
+	
+	ENTITY_STUDENT("br.com.viktor.javawebpoc.student"),
+	NAME("br.com.viktor.javawebpoc.name");
 	
 	private String messageKey;
 
