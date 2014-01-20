@@ -216,3 +216,14 @@ pip-log.txt
 
 # grunt
 **/node_modules/**
+
+
+#############
+## Other
+#############
+
+# Temp files
+*.tmp.txt
+
+# WebStorm
+.idea

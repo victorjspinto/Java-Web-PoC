@@ -8,6 +8,11 @@
 
 declare var angular: ng.IAngularStatic;
 
+// Support for painless dependency injection
+interface Function {
+    $inject: string[];
+}
+
 ///////////////////////////////////////////////////////////////////////////////
 // ng module (angular.js)
 ///////////////////////////////////////////////////////////////////////////////
@@ -27,28 +32,29 @@ declare module ng {
         bootstrap(element: string, modules?: any[]): auto.IInjectorService;
         bootstrap(element: JQuery, modules?: any[]): auto.IInjectorService;
         bootstrap(element: Element, modules?: any[]): auto.IInjectorService;
+        bootstrap(element: Document, modules?: any[]): auto.IInjectorService;
         copy(source: any, destination?: any): any;
-        element: JQueryStatic;
-        equals(value1: any, value2: any): bool;
+        element: IAugmentedJQueryStatic;
+        equals(value1: any, value2: any): boolean;
         extend(destination: any, ...sources: any[]): any;
-        forEach(obj: any, iterator: (value, key) => any, context?: any): any;
+        forEach(obj: any, iterator: (value: any, key: any) => any, context?: any): any;
         fromJson(json: string): any;
         identity(arg?: any): any;
         injector(modules?: any[]): auto.IInjectorService;
-        isArray(value: any): bool;
-        isDate(value: any): bool;
-        isDefined(value: any): bool;
-        isElement(value: any): bool;
-        isFunction(value: any): bool;
-        isNumber(value: any): bool;
-        isObject(value: any): bool;
-        isString(value: any): bool;
-        isUndefined(value: any): bool;
+        isArray(value: any): boolean;
+        isDate(value: any): boolean;
+        isDefined(value: any): boolean;
+        isElement(value: any): boolean;
+        isFunction(value: any): boolean;
+        isNumber(value: any): boolean;
+        isObject(value: any): boolean;
+        isString(value: any): boolean;
+        isUndefined(value: any): boolean;
         lowercase(str: string): string;
         /** construct your angular application
-		official docs: Interface for configuring angular modules.
-		see: http://docs.angularjs.org/api/angular.Module
-		*/
+        official docs: Interface for configuring angular modules.
+        see: http://docs.angularjs.org/api/angular.Module
+        */
         module(
             /** name of your module you want to create */
             name: string,
@@ -56,7 +62,7 @@ declare module ng {
             requires?: string[],
             configFunction?: any): IModule;
         noop(...args: any[]): void;
-        toJson(obj: any, pretty?: bool): string;
+        toJson(obj: any, pretty?: boolean): string;
         uppercase(str: string): string;
         version: {
             full: string;
@@ -76,21 +82,21 @@ declare module ng {
         animation(name: string, inlineAnnotadedFunction: any[]): IModule;
         animation(object: Object): IModule;
         /** configure existing services.  
-		Use this method to register work which needs to be performed on module loading
-		 */
+        Use this method to register work which needs to be performed on module loading
+         */
         config(configFn: Function): IModule;
         /** configure existing services.  
-		Use this method to register work which needs to be performed on module loading
-		 */
+        Use this method to register work which needs to be performed on module loading
+         */
         config(inlineAnnotadedFunction: any[]): IModule;
         constant(name: string, value: any): IModule;
         constant(object: Object): IModule;
         controller(name: string, controllerConstructor: Function): IModule;
         controller(name: string, inlineAnnotadedConstructor: any[]): IModule;
-        controller(object : Object): IModule;
-        directive(name: string, directiveFactory: (...params:any[])=> IDirective): IModule;
+        controller(object: Object): IModule;
+        directive(name: string, directiveFactory: (...params: any[]) => IDirective): IModule;
         directive(name: string, inlineAnnotadedFunction: any[]): IModule;
-        directive(object: Object): IModule;        
+        directive(object: Object): IModule;
         factory(name: string, serviceFactoryFunction: Function): IModule;
         factory(name: string, inlineAnnotadedFunction: any[]): IModule;
         factory(object: Object): IModule;
@@ -111,6 +117,16 @@ declare module ng {
         // Properties
         name: string;
         requires: string[];
+
+        lazy: ILazySupport;
+    }
+
+    interface ILazySupport {
+        controller: IControlerProvider;
+        directive: ICompileProvider;
+        filter: IServiceProvider;
+        factory: IServiceProvider;
+        service: IServiceProvider;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -119,6 +135,7 @@ declare module ng {
     ///////////////////////////////////////////////////////////////////////////
     interface IAttributes {
         $set(name: string, value: any): void;
+        $observe(name: string, fn: (value?: any) => any): void;
         $attr: any;
     }
 
@@ -127,11 +144,13 @@ declare module ng {
     // see http://docs.angularjs.org/api/ng.directive:form.FormController
     ///////////////////////////////////////////////////////////////////////////
     interface IFormController {
-        $pristine: bool;
-        $dirty: bool;
-        $valid: bool;
-        $invalid: bool;
+        $pristine: boolean;
+        $dirty: boolean;
+        $valid: boolean;
+        $invalid: boolean;
         $error: any;
+        $setDirty(): void;
+        $setPristine(): void;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -140,7 +159,7 @@ declare module ng {
     ///////////////////////////////////////////////////////////////////////////
     interface INgModelController {
         $render(): void;
-        $setValidity(validationErrorKey: string, isValid: bool): void;
+        $setValidity(validationErrorKey: string, isValid: boolean): void;
         $setViewValue(value: string): void;
 
         // XXX Not sure about the types here. Documentation states it's a string, but
@@ -154,10 +173,10 @@ declare module ng {
         $parsers: IModelParser[];
         $formatters: IModelFormatter[];
         $error: any;
-        $pristine: bool;
-        $dirty: bool;
-        $valid: bool;
-        $invalid: bool;
+        $pristine: boolean;
+        $dirty: boolean;
+        $valid: boolean;
+        $invalid: boolean;
     }
 
     interface IModelParser {
@@ -191,14 +210,16 @@ declare module ng {
         $evalAsync(expression: (scope: IScope) => any): void;
 
         // Defaults to false by the implementation checking strategy
-        $new(isolate?: bool): IScope;
+        $new(isolate?: boolean): IScope;
 
         $on(name: string, listener: (event: IAngularEvent, ...args: any[]) => any): Function;
 
-        $watch(watchExpression: string, listener?: string, objectEquality?: bool): Function;
-        $watch(watchExpression: string, listener?: (newValue: any, oldValue: any, scope: IScope) => any, objectEquality?: bool): Function;
-        $watch(watchExpression: (scope: IScope) => any, listener?: string, objectEquality?: bool): Function;
-        $watch(watchExpression: (scope: IScope) => any, listener?: (newValue: any, oldValue: any, scope: IScope) => any, objectEquality?: bool): Function;
+        $watch(watchExpression: string, listener?: string, objectEquality?: boolean): Function;
+        $watch(watchExpression: string, listener?: (newValue: any, oldValue: any, scope: IScope) => any, objectEquality?: boolean): Function;
+        $watch(watchExpression: (scope: IScope) => any, listener?: string, objectEquality?: boolean): Function;
+        $watch(watchExpression: (scope: IScope) => any, listener?: (newValue: any, oldValue: any, scope: IScope) => any, objectEquality?: boolean): Function;
+
+        $parent: IScope;
 
         $id: number;
     }
@@ -208,7 +229,7 @@ declare module ng {
         currentScope: IScope;
         name: string;
         preventDefault: Function;
-        defaultPrevented: bool;
+        defaultPrevented: boolean;
 
         // Available only events that were $emit-ted
         stopPropagation?: Function;
@@ -218,21 +239,21 @@ declare module ng {
     // WindowService
     // see http://docs.angularjs.org/api/ng.$window
     ///////////////////////////////////////////////////////////////////////////
-    interface IWindowService extends Window {}
+    interface IWindowService extends Window { }
 
     ///////////////////////////////////////////////////////////////////////////
     // BrowserService
     // TODO undocumented, so we need to get it from the source code
     ///////////////////////////////////////////////////////////////////////////
-    interface IBrowserService {}
+    interface IBrowserService { }
 
     ///////////////////////////////////////////////////////////////////////////
     // TimeoutService
     // see http://docs.angularjs.org/api/ng.$timeout
     ///////////////////////////////////////////////////////////////////////////
     interface ITimeoutService {
-        (func: Function, delay?: number, invokeApply?: bool): IPromise;
-        cancel(promise: IPromise): bool;
+        (func: Function, delay?: number, invokeApply?: boolean): IPromise<any>;
+        cancel(promise: IPromise<any>): boolean;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -302,6 +323,7 @@ declare module ng {
     // see http://docs.angularjs.org/api/ng.$log
     ///////////////////////////////////////////////////////////////////////////
     interface ILogService {
+        debug: ILogCall;
         error: ILogCall;
         info: ILogCall;
         log: ILogCall;
@@ -347,7 +369,7 @@ declare module ng {
         port(): number;
         protocol(): string;
         replace(): ILocationService;
-        search(): string;
+        search(): any;
         search(parametersMap: any): ILocationService;
         search(parameter: string, parameterValue: any): ILocationService;
         url(): string;
@@ -357,19 +379,19 @@ declare module ng {
     interface ILocationProvider extends IServiceProvider {
         hashPrefix(): string;
         hashPrefix(prefix: string): ILocationProvider;
-        html5Mode(): bool;
+        html5Mode(): boolean;
 
         // Documentation states that parameter is string, but
         // implementation tests it as boolean, which makes more sense
         // since this is a toggler
-        html5Mode(active: bool): ILocationProvider;
+        html5Mode(active: boolean): ILocationProvider;
     }
 
     ///////////////////////////////////////////////////////////////////////////
     // DocumentService
     // see http://docs.angularjs.org/api/ng.$document
     ///////////////////////////////////////////////////////////////////////////
-    interface IDocumentService extends Document {}
+    interface IDocumentService extends Document { }
 
     ///////////////////////////////////////////////////////////////////////////
     // ExceptionHandlerService
@@ -383,27 +405,29 @@ declare module ng {
     // RootElementService
     // see http://docs.angularjs.org/api/ng.$rootElement
     ///////////////////////////////////////////////////////////////////////////
-    interface IRootElementService extends JQuery {}
+    interface IRootElementService extends JQuery { }
 
     ///////////////////////////////////////////////////////////////////////////
     // QService
     // see http://docs.angularjs.org/api/ng.$q
     ///////////////////////////////////////////////////////////////////////////
     interface IQService {
-        all(promises: IPromise[]): IPromise;
-        defer(): IDeferred;
-        reject(reason?: any): IPromise;
-        when(value: any): IPromise;
+        all(promises: IPromise<any>[]): IPromise<any[]>;
+        defer<T>(): IDeferred<T>;
+        reject(reason?: any): IPromise<void>;
+        when<T>(value: T): IPromise<T>;
     }
 
-    interface IPromise {
-        then(successCallback: (promiseValue: any) => any, errorCallback?: (reason: any) => any): IPromise;
+    interface IPromise<T> {
+        then<TResult>(successCallback: (promiseValue: T) => IHttpPromise<TResult>, errorCallback?: (reason: any) => any): IPromise<TResult>;
+        then<TResult>(successCallback: (promiseValue: T) => IPromise<TResult>, errorCallback?: (reason: any) => any): IPromise<TResult>;
+        then<TResult>(successCallback: (promiseValue: T) => TResult, errorCallback?: (reason: any) => TResult): IPromise<TResult>;
     }
 
-    interface IDeferred {
-        resolve(value?: any): void;
+    interface IDeferred<T> {
+        resolve(value?: T): void;
         reject(reason?: any): void;
-        promise: IPromise;
+        promise: IPromise<T>;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -431,7 +455,7 @@ declare module ng {
 
         // Methods bellow are not documented
         info(): any;
-        get (cacheId: string): ICacheObject;
+        get(cacheId: string): ICacheObject;
     }
 
     interface ICacheObject {
@@ -443,7 +467,7 @@ declare module ng {
             //capacity: number;
         };
         put(key: string, value?: any): void;
-        get (key: string): any;
+        get(key: string): any;
         remove(key: string): void;
         removeAll(): void;
         destroy(): void;
@@ -494,21 +518,21 @@ declare module ng {
     ///////////////////////////////////////////////////////////////////////////
     interface IHttpService {
         // At least moethod and url must be provided...
-        (config: IRequestConfig): IHttpPromise;
-        get (url: string, RequestConfig?: any): IHttpPromise;
-        delete (url: string, RequestConfig?: any): IHttpPromise;
-        head(url: string, RequestConfig?: any): IHttpPromise;
-        jsonp(url: string, RequestConfig?: any): IHttpPromise;
-        post(url: string, data: any, RequestConfig?: any): IHttpPromise;
-        put(url: string, data: any, RequestConfig?: any): IHttpPromise;
+        (config: IRequestConfig): IHttpPromise<any>;
+        get(url: string, RequestConfig?: any): IHttpPromise<any>;
+        delete(url: string, RequestConfig?: any): IHttpPromise<any>;
+        head(url: string, RequestConfig?: any): IHttpPromise<any>;
+        jsonp(url: string, RequestConfig?: any): IHttpPromise<any>;
+        post(url: string, data: any, RequestConfig?: any): IHttpPromise<any>;
+        put(url: string, data: any, RequestConfig?: any): IHttpPromise<any>;
         defaults: IRequestConfig;
 
         // For debugging, BUT it is documented as public, so...
         pendingRequests: any[];
     }
 
-    // This is just for hinting.    
-    // Some opetions might not be available depending on the request. 
+    // This is just for hinting.
+    // Some opetions might not be available depending on the request.
     // see http://docs.angularjs.org/api/ng.$http#Usage for options explanations
     interface IRequestConfig {
         method: string;
@@ -520,7 +544,7 @@ declare module ng {
 
         cache?: any;
         timeout?: number;
-        withCredentials?: bool;
+        withCredentials?: boolean;
 
         // These accept multiple types, so let's defile them as any
         data?: any;
@@ -528,17 +552,22 @@ declare module ng {
         transformResponse?: any;
     }
 
-    interface IHttpPromiseCallbackArg {
-        data?: any;
+    interface IHttpPromiseCallback<T> {
+        (data: T, status: number, headers: (headerName: string) => string, config: IRequestConfig): void;
+    }
+
+    interface IHttpPromiseCallbackArg<T> {
+        data?: T;
         status?: number;
         headers?: (headerName: string) => string;
         config?: IRequestConfig;
     }
 
-    interface IHttpPromise extends IPromise {
-        success(callback: (data: any, status: number, headers: (headerName: string) => string, config: IRequestConfig) => any): IHttpPromise;
-        error(callback: (data: any, status: number, headers: (headerName: string) => string, config: IRequestConfig) => any): IHttpPromise;
-        then(successCallback: (response: IHttpPromiseCallbackArg) => any, errorCallback?: (response: IHttpPromiseCallbackArg) => any): IPromise;
+    interface IHttpPromise<T> extends IPromise<T> {
+        success(callback: IHttpPromiseCallback<T>): IHttpPromise<T>;
+        error(callback: IHttpPromiseCallback<T>): IHttpPromise<T>;
+        then<TResult>(successCallback: (response: IHttpPromiseCallbackArg<T>) => TResult, errorCallback?: (response: IHttpPromiseCallbackArg<T>) => any): IPromise<TResult>;
+        then<TResult>(successCallback: (response: IHttpPromiseCallbackArg<T>) => IPromise<TResult>, errorCallback?: (response: IHttpPromiseCallbackArg<T>) => any): IPromise<TResult>;
     }
 
     interface IHttpProvider extends IServiceProvider {
@@ -553,7 +582,7 @@ declare module ng {
     ///////////////////////////////////////////////////////////////////////////
     interface IHttpBackendService {
         // XXX Perhaps define callback signature in the future
-        (method: string, url: string, post?: any, callback?: Function, headers?: any, timeout?: number, withCredentials?: bool): void;
+        (method: string, url: string, post?: any, callback?: Function, headers?: any, timeout?: number, withCredentials?: boolean): void;
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -562,7 +591,7 @@ declare module ng {
     // see http://docs.angularjs.org/api/ng.$interpolateProvider
     ///////////////////////////////////////////////////////////////////////////
     interface IInterpolateService {
-        (text: string, mustHaveExpression?: bool): IInterpolationFunction;
+        (text: string, mustHaveExpression?: boolean): IInterpolationFunction;
         endSymbol(): string;
         startSymbol(): string;
     }
@@ -582,19 +611,19 @@ declare module ng {
     // RouteParamsService
     // see http://docs.angularjs.org/api/ng.$routeParams
     ///////////////////////////////////////////////////////////////////////////
-    interface IRouteParamsService {}
+    interface IRouteParamsService { }
 
     ///////////////////////////////////////////////////////////////////////////
     // TemplateCacheService
     // see http://docs.angularjs.org/api/ng.$templateCache
     ///////////////////////////////////////////////////////////////////////////
-    interface ITemplateCacheService extends ICacheObject {}
+    interface ITemplateCacheService extends ICacheObject { }
 
     ///////////////////////////////////////////////////////////////////////////
     // RootScopeService
     // see http://docs.angularjs.org/api/ng.$rootScope
     ///////////////////////////////////////////////////////////////////////////
-    interface IRootScopeService extends IScope {}
+    interface IRootScopeService extends IScope { }
 
     ///////////////////////////////////////////////////////////////////////////
     // RouteService
@@ -613,11 +642,12 @@ declare module ng {
     // see http://docs.angularjs.org/api/ng.$routeProvider#when for options explanations
     interface IRoute {
         controller?: any;
+        name?: string;
         template?: string;
-        templateUrl?: string;
+        templateUrl?: any;
         resolve?: any;
         redirectTo?: any;
-        reloadOnSearch?: bool;
+        reloadOnSearch?: boolean;
     }
 
     // see http://docs.angularjs.org/api/ng.$route#current
@@ -626,29 +656,63 @@ declare module ng {
             $scope: IScope;
             $template: string;
         };
+
+        params: any;
     }
 
     interface IRouteProvider extends IServiceProvider {
         otherwise(params: any): IRouteProvider;
         when(path: string, route: IRoute): IRouteProvider;
     }
-    
+
     ///////////////////////////////////////////////////////////////////////////
     // Directive
     // see http://docs.angularjs.org/api/ng.$compileProvider#directive
     // and http://docs.angularjs.org/guide/directive
     ///////////////////////////////////////////////////////////////////////////
 
-    interface IDirective{
+    interface IDirective {
         priority?: number;
         template?: string;
         templateUrl?: string;
-        replace?: bool;
+        replace?: boolean;
         transclude?: any;
         restrict?: string;
         scope?: any;
         link?: Function;
         compile?: Function;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////
+    // angular.element
+    // when calling angular.element, angular returns a jQuery object,
+    // augmented with additional methods like e.g. scope.
+    // see: http://docs.angularjs.org/api/angular.element
+    ///////////////////////////////////////////////////////////////////////////
+    interface IAugmentedJQueryStatic extends JQueryStatic {
+        (selector: string, context?: any): IAugmentedJQuery;
+        (element: Element): IAugmentedJQuery;
+        (object: {}): IAugmentedJQuery;
+        (elementArray: Element[]): IAugmentedJQuery;
+        (object: JQuery): IAugmentedJQuery;
+        (func: Function): IAugmentedJQuery;
+        (array: any[]): IAugmentedJQuery;
+        (): IAugmentedJQuery;
+    }
+
+    interface IAugmentedJQuery extends JQuery {
+        // TODO: events, how to define?
+        //$destroy
+
+        controller(name: string): any;
+        injector(): any;
+        scope(): IScope;
+
+        inheritedData(key: string, value: any): JQuery;
+        inheritedData(obj: { [key: string]: any; }): JQuery;
+        inheritedData(key?: string): any;
+
+
     }
 
 
@@ -664,7 +728,7 @@ declare module ng {
         interface IInjectorService {
             annotate(fn: Function): string[];
             annotate(inlineAnnotadedFunction: any[]): string[];
-            get (name: string): any;
+            get(name: string): any;
             instantiate(typeConstructor: Function, locals?: any): any;
             invoke(func: Function, context?: any, locals?: any): any;
         }
@@ -680,6 +744,7 @@ declare module ng {
             constant(name: string, value: any): void;
 
             decorator(name: string, decorator: Function): void;
+            decorator(name: string, decoratorInline: any[]): void;
             factory(name: string, serviceFactoryFunction: Function): ng.IServiceProvider;
             provider(name: string, provider: ng.IServiceProvider): ng.IServiceProvider;
             provider(name: string, serviceProviderConstructor: Function): ng.IServiceProvider;

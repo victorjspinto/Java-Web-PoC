@@ -1,72 +1,56 @@
 package br.com.viktor.javawebpoc.controller.util;
 
+import java.util.Locale;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import br.com.viktor.javawebpoc.exception.EntityExistsException;
-import br.com.viktor.javawebpoc.exception.EntityNotExistException;
-import br.com.viktor.javawebpoc.exception.InvalidArgumentException;
-import br.com.viktor.javawebpoc.exception.NullArgumentException;
+import br.com.viktor.javawebpoc.exception.JavaWebPoCException;
+import br.com.viktor.javawebpoc.exception.alreadyExists.AlreadyExistsException;
+import br.com.viktor.javawebpoc.exception.invalidArgument.InvalidArgumentException;
+import br.com.viktor.javawebpoc.exception.notFound.NotFoundException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-
-	@ExceptionHandler(value = IllegalArgumentException.class)
-	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-	public @ResponseBody
-	void validationExceptionHandler() {
-
-	}
-
-	@ExceptionHandler(value = EntityNotExistException.class)
-	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-	public @ResponseBody
-	ErrorResponse entityNotExistExceptionHandler(EntityNotExistException ex) {
-		ErrorResponse response = new ErrorResponse();
-
-		response.setMessage(ex.getMessage());
-		response.setMessage(ex.getMessage());
-
-		return response;
-	}
-
-	@ExceptionHandler(value = NullArgumentException.class)
-	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-	public @ResponseBody
-	NullArgumentResponse nullArgumentExceptionHandler(NullArgumentException ex) {
-		NullArgumentResponse response = new NullArgumentResponse();
-
-		response.setMessage(ex.getMessage());
-		response.setProperty(ex.getProperty());
-
+	
+	@Autowired
+	private MessageSource messageSource;
+	
+	@ExceptionHandler(value = NotFoundException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	@ResponseBody
+	public ErrorResponse entityNotExistExceptionHandler(NotFoundException ex, Locale locale) {
+		ErrorResponse response = ex.getMessage(messageSource, locale);
 		return response;
 	}
 
 	@ExceptionHandler(value = InvalidArgumentException.class)
 	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-	public @ResponseBody
-	InvalidArgumentResponse invalidArgumentExceptionHandler(
-			InvalidArgumentException ex) {
-		InvalidArgumentResponse response = new InvalidArgumentResponse();
-
-		response.setMessage(ex.getMessage());
-		response.setValidationResult(ex.getValidationResult());
-
+	@ResponseBody
+	public ErrorResponse invalidArgumentExceptionHandler(InvalidArgumentException ex, Locale locale) {
+		ErrorResponse response = ex.getMessage(messageSource, locale);
 		return response;
 	}
 
-	@ExceptionHandler(value = EntityExistsException.class)
-	@ResponseStatus(value = HttpStatus.UNPROCESSABLE_ENTITY)
-	public @ResponseBody
-	EntityExistResponse entityExistExceptionHandler(EntityExistsException ex) {
-		EntityExistResponse response = new EntityExistResponse();
-
-		response.setMessage(ex.getMessage());
-		response.setCurrentEntity(ex.getCurrentEntity());
-
+	@ExceptionHandler(value = AlreadyExistsException.class)
+	@ResponseStatus(value = HttpStatus.CONFLICT) 
+	@ResponseBody
+	public ErrorResponse entityExistExceptionHandler(AlreadyExistsException ex, Locale locale) {
+		ErrorResponse response = ex.getMessage(messageSource, locale);
 		return response;
 	}
+	
+	@ExceptionHandler(JavaWebPoCException.class)
+	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+	@ResponseBody
+	public ErrorResponse generalExceptionHandler(JavaWebPoCException ex, Locale locale) {
+		ErrorResponse response = ex.getMessage(messageSource, locale);
+		return response;
+	}
+		
 }
