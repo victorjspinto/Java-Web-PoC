@@ -8,6 +8,8 @@ public enum MessageKey {
 	NULLARGUMENT_EXCEPTION("br.com.viktor.javawebpoc.exception.nullargumentexception"),
 	INVALIDSTUDENT_EXCEPTION("br.com.viktor.javawebpoc.exception.invalidstudentexception"),
 	NOTFOUND_EXCEPTION("br.com.viktor.javawebpoc.exception.notfoundexception"),
+	JSONBADREQUEST_EXCEPTION("br.com.viktor.javawebpoc.exception.jsonbadrequest"),
+	METHODNOTSUPPORTED_EXCEPTION("br.com.viktor.javawebpoc.exception.methodnotsupported"),
 
 	VALIDATION_INVALID("br.com.viktor.javawebpoc.validation.invalid"),
 	VALIDATION_FIELD_REQUIRED("br.com.viktor.javawebpoc.validation.fieldrequired"),
