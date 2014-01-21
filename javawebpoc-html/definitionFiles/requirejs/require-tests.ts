@@ -40,4 +40,3 @@ require(['main'], (main, $, _, Backbone) => {
 
 var recOne = require.config({ baseUrl: 'js' });
 recOne(['core'], function (core) {/*some code*/});
-
