@@ -340,7 +340,9 @@ module.exports = function (grunt) {
                 'ts:dev'
             ],
             test: [
-                'copy:styles'
+                'copy:styles',
+                'copy:bower',
+                'ts:dev'
             ],
             dist: [
                 'copy:styles',

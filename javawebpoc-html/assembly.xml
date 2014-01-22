@@ -9,6 +9,7 @@
   <fileSets>
     <fileSet>
       <directory>dist/</directory>
+      <outputDirectory>/</outputDirectory>
     </fileSet>
   </fileSets>
 </assembly>

@@ -1,7 +1,6 @@
 /// <reference path='../../definitionFiles/angular/angular.d.ts' />
 
 //grunt-start
-/// <reference path="bootstrap.ts" />
 /// <reference path="config/appConfig.ts" />
 /// <reference path="controller/StudentEditController.ts" />
 /// <reference path="controller/StudentListController.ts" />
