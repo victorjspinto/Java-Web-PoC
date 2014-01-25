@@ -51,4 +51,3 @@ declare module scenario
 declare var browser: scenario.IBrowser;
 declare var element: scenario.IElement;
 declare var sleep: scenario.ISleep;
-

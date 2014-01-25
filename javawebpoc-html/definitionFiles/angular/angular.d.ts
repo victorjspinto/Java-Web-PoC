@@ -81,11 +81,11 @@ declare module ng {
         animation(name: string, animationFactory: Function): IModule;
         animation(name: string, inlineAnnotadedFunction: any[]): IModule;
         animation(object: Object): IModule;
-        /** configure existing services.  
+        /** configure existing services.
         Use this method to register work which needs to be performed on module loading
          */
         config(configFn: Function): IModule;
-        /** configure existing services.  
+        /** configure existing services.
         Use this method to register work which needs to be performed on module loading
          */
         config(inlineAnnotadedFunction: any[]): IModule;

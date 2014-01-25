@@ -152,7 +152,7 @@ module HttpAndRegularPromiseTests {
 // Test for AngularJS Syntax
 
 module My.Namespace {
-    export var x; // need to export something for module to kick in    
+    export var x; // need to export something for module to kick in
 }
 
 // IModule Registering Test
@@ -203,11 +203,11 @@ foo.then((x) => {
 }).then((x) => {
     // Object is inferred here
     x.a = 123;
-    //Try a promise 
+    //Try a promise
     var y: ng.IPromise<number>;
-    return y; 
+    return y;
 }).then((x) => {
-    // x is infered to be a number, which is the resolved value of a promise 
+    // x is infered to be a number, which is the resolved value of a promise
     x.toFixed();
 });
 
@@ -215,5 +215,3 @@ foo.then((x) => {
 // angular.element() tests
 var element = angular.element("div.myApp");
 var scope: ng.IScope = element.scope();
-
-

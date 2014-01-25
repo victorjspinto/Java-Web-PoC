@@ -1,0 +1,70 @@
+<div data-ng-controller="StudentListController">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="page-title">Estudantes <small>Listagem de estudantes</small></h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-7">
+            <section class="widget">
+                <header>
+                    <h4><i class="fa fa-user"></i> Estudantes <small>Criar um novo ou alterar um existente</small></h4>
+                </header>
+                <div class="body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Id</th>
+                                <th>Nome</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="info animated" data-ng-repeat="student in students" ng-animate="{enter: 'animate-enter'}">
+                                <td>{{student.id}}</td>
+                                <td><a href="#/student/{{student.id}}">{{student.name}}</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<!--     <div class="row-fluid">
+        <div class="span12">
+            <h3>Lista de Estudantes
+            </h3>
+
+            <div>
+                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.message}}</alert>
+            </div>
+
+
+            <ul class="nav nav-pills nav-stacked">
+                <li ng-animate="'animate'" ng-repeat="student in students">
+                    <a href="#/student/{{student.id}}"> {{student.name}} </a>
+                </li>
+            </ul>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="info animated" data-ng-repeat="student in students" ng-animate="{enter: 'animate-enter'}">
+                        <td>{{student.id}}</td>
+                        <td><a href="#/student/{{student.id}}">{{student.name}}</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div> -->
+</div>
