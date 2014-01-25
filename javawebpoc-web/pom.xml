@@ -22,14 +22,7 @@
 		<spring.data.version>1.2.0.RELEASE</spring.data.version>
 		<spring.security.version>3.1.4.RELEASE</spring.security.version>
 	</properties>
-
-	<repositories>
-		<repository>
-			<id>dclick-repository</id>
-			<url>http://office-sp.dclick.com.br/nexus/content/groups/dclick/</url>
-		</repository>
-	</repositories>
-
+	
 	<dependencies>
 		<dependency>
 			<groupId>br.com.victor.javawebpoc</groupId>
