@@ -47,6 +47,10 @@ module.exports = function (grunt) {
             gruntfile: {
                 files: ['Gruntfile.js']
             },
+            typescript: {
+                files: ['<%= yeoman.app %>/scripts/**/*.ts'],
+                tasks: ['ts:dev']
+            },
             livereload: {
                 options: {
                     livereload: '<%= connect.options.livereload %>'
