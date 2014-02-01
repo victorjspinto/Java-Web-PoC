@@ -32,28 +32,29 @@
         <script src="scripts/controller/StudentListController.js"></script>
         <script src="scripts/controller/StudentEditController.js"></script>
         <script src="scripts/controller/LoginController.js"></script>
+        <script src="scripts/controller/AccessController.js"></script>
 
         <script src="scripts/config/appConfig.js"></script>
         <!-- endbuild -->    
     </head>
-    <body ng-app="javawebpoc-html" class="background-dark">
+    <body ng-app="javawebpoc-html" class="background-dark" data-ng-controller="accessController">
 
         <div class="logo">
             <h4><a href="/#">JavaWeb <strong>PoC</strong></a></h4>
         </div>
 
-        <ng-include src="'views/login.html'"></ng-include>
+        <ng-include data-ng-hide="isLogged" src="'views/login.html'"></ng-include>
 
         <!-- Sidebar menu -->
-        <!-- <ng-include src="'views/components/sidebar.html'"></ng-include> -->
+        <ng-include data-ng-show="isLogged" src="'views/components/sidebar.html'"></ng-include>
 
         <!-- Main -->
-<!--         <div class="wrap">
+        <div class="wrap" data-ng-show="isLogged">
             <ng-include src="'views/components/header.html'"></ng-include>
             <div class="content container">
                 <div ng-view></div>
             </div>
         </div>
- -->
+
     </body>
 </html>

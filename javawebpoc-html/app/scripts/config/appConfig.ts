@@ -5,8 +5,8 @@ var app = angular.module('javawebpoc-html', ['ngRoute']);
 app.service("$studentService", 
     ($timeout: ng.ITimeoutService) => new service.mock.StudentServiceMock($timeout) 
 );
-app.service("$userService", ($http:ng.IHttpService, $window:ng.IWindowService) 
-    => new service.impl.UserService($http, $window)
+app.service("$userService", ($http:ng.IHttpService, $window:ng.IWindowService, $rootScope:ng.IRootScopeService)
+    => new service.impl.UserService($http, $window, $rootScope)
 );
 
 app.controller("studentListController", ($scope:controller.StudentListViewModel, $studentService:service.contract.StudentServiceContract)
@@ -14,6 +14,9 @@ app.controller("studentListController", ($scope:controller.StudentListViewModel,
 );
 app.controller("loginController", ($scope:controller.LoginViewModel, $userService:service.impl.UserService) 
     => new controller.LoginController($scope, $userService)
+);
+app.controller("accessController", ($scope:controller.AccessViewModel, $userService:service.impl.UserService)
+    => new controller.AccessController($scope, $userService)
 );
 
 
@@ -26,23 +29,23 @@ app.config(
             });
         $routeProvider.when('/', {
                 templateUrl: 'views/main.html'
-            })
+            });
         $routeProvider.otherwise('/');
     }
 );
 
-//app.run(
-//    ($rootScope:ng.IRootScopeService, $location:ng.ILocationService,
-//     $userService:service.impl.UserService, $log:ng.ILogService) => {
-//        $rootScope.$on('$routeChangeStart', (next:ng.IAngularEvent) => {
-//            console.log(!$userService.isLogged());
-//            if(!$userService.isLogged()){
-//                console.log("Not logged in");
-//                $location.path('/');
-//            }
-//        });
-//    }
-//);
+app.run(
+    ($rootScope:ng.IRootScopeService, $location:ng.ILocationService,
+     $userService:service.impl.UserService, $log:ng.ILogService) => {
+        $rootScope.$on('$routeChangeStart', (next:ng.IAngularEvent) => {
+            console.log(!$userService.isLogged());
+            if(!$userService.isLogged()){
+                console.log("Not logged in");
+                $location.path('/');
+            }
+        });
+    }
+);
 
 var telephoneDirectiveFactory = (): ng.IDirective => {
     return {

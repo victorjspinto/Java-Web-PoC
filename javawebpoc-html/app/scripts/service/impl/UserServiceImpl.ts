@@ -4,7 +4,7 @@ module service.impl{
 	export class UserService {
 
 		constructor(private $http:ng.IHttpService, 
-			private $window:ng.IWindowService) {
+			private $window:ng.IWindowService, private $rootScope:ng.IRootScopeService) {
 
 		}
 
@@ -13,17 +13,19 @@ module service.impl{
 			promise.then( 
 				(x) => {
 					this.$window.sessionStorage.setItem("logged","true");
+                    this.$rootScope.$broadcast("userLoggedIn");
 					return x.data;
 				},
-				(x) => {
-					this.$window.sessionStorage.removeItem("logged");
+				() => {
+                    this.logout();
 				}
 			);
 			return promise;
 		}
 
 		logout() {
-			this.$window.sessionStorage.removeItem("logged");
+            this.$window.sessionStorage.removeItem("logged");
+            this.$rootScope.$broadcast("userLoggedOut");
 		}
 
 		isLogged(): boolean {
