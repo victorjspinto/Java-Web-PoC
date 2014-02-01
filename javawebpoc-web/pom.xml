@@ -28,8 +28,15 @@
 			<groupId>br.com.victor.javawebpoc</groupId>
 			<artifactId>javawebpoc-html</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
-		    <classifier>resources</classifier>
-		    <type>zip</type>
+			<classifier>resources</classifier>
+			<type>zip</type>
+		</dependency>
+
+		<!-- New Relic -->
+		<dependency>
+			<groupId>com.newrelic.agent.java</groupId>
+			<artifactId>newrelic-agent</artifactId>
+			<version>3.4.2</version>
 		</dependency>
 
 		<!-- BoneCP -->
@@ -302,21 +309,33 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
 				<executions>
-		            <execution>
-		                <id>unpack-html-resources</id>
-		                <goals>
-		                    <goal>unpack-dependencies</goal>
-		                </goals>
-		                <phase>generate-resources</phase>
-		                <configuration>
-		                    <outputDirectory>${project.build.directory}/html</outputDirectory>
-		                    <includeArtifacIds>javawebpoc-html</includeArtifacIds>
-		                    <includeGroupIds>${project.groupId}</includeGroupIds>
-		                    <excludeTransitive>true</excludeTransitive>
-		                    <excludeTypes>pom</excludeTypes>
-		                </configuration>
-		            </execution>
-		        </executions>
+					<execution>
+						<id>unpack-html-resources</id>
+						<goals>
+							<goal>unpack-dependencies</goal>
+						</goals>
+						<phase>generate-resources</phase>
+						<configuration>
+							<outputDirectory>${project.build.directory}/html</outputDirectory>
+							<includeArtifacIds>javawebpoc-html</includeArtifacIds>
+							<includeGroupIds>${project.groupId}</includeGroupIds>
+							<excludeTransitive>true</excludeTransitive>
+							<excludeTypes>pom</excludeTypes>
+						</configuration>
+					</execution>
+					<execution>
+						<id>copy-new-relic</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<includeGroupIds>com.newrelic.agent.java</includeGroupIds>
+							<includeArtifactIds>newrelic-agent</includeArtifactIds>
+							<stripVersion>true</stripVersion>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>
