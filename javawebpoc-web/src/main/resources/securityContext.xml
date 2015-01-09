@@ -5,50 +5,64 @@
 		http://www.springframework.org/schema/security
  		http://www.springframework.org/schema/security/spring-security-3.1.xsd">
 
-	<!-- Configure to protect /rest/** and do auth on /rest/login. This API respond 401 and 200 for auth success and error -->
+	<!-- Configure to protect /rest/** and do auth on /rest/login. This API 
+		respond 401 and 200 for auth success and error -->
 
-    <!-- Enable Spring Security -->
-    <http entry-point-ref="restAuthenticationEntryPoint" use-expressions="true">
-        <!-- Configures the security rules of our REST API -->
-<!--         <intercept-url pattern="/rest/user" access="permitAll()"/> -->
-        <intercept-url pattern="/rest/**" access="hasRole('ROLE_USER')"/>
+	<!-- Enable Spring Security -->
+	<http entry-point-ref="restAuthenticationEntryPoint"
+		use-expressions="true">
+		<!-- Configures the security rules of our REST API -->
+		<!-- <intercept-url pattern="/rest/user" access="permitAll()"/> -->
+		<intercept-url pattern="/rest/**" access="hasRole('ROLE_USER')" />
 
-        <!-- Adds the custom login filter to Spring Security filter chain -->
-        <custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER"/>
-        <!-- Adds a logout filter to Spring Security filter chain -->
-        <logout logout-url="/rest/logout" delete-cookies="true" invalidate-session="true" success-handler-ref="restLogoutSuccessHandler"/>
-    </http>
+		<!-- Adds the custom login filter to Spring Security filter chain -->
+		<custom-filter ref="loginFilter" position="FORM_LOGIN_FILTER" />
+		<!-- Adds a logout filter to Spring Security filter chain -->
+		<logout logout-url="/rest/logout" delete-cookies="true"
+			invalidate-session="true" success-handler-ref="restLogoutSuccessHandler" />
+	</http>
 
-    <!-- Configures the authentication entry point that returns HTTP status code 401 -->
-    <beans:bean id="restAuthenticationEntryPoint" class="br.com.viktor.javawebpoc.security.RestAuthenticationEntryPoint"/>
+	<!-- Configures the authentication entry point that returns HTTP status 
+		code 401 -->
+	<beans:bean id="restAuthenticationEntryPoint"
+		class="br.com.viktor.javawebpoc.security.RestAuthenticationEntryPoint" />
 
-    <!-- Configures a custom login filter bean -->
-    <beans:bean id="loginFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
-        <beans:property name="authenticationManager" ref="authenticationManager"/>
-        <beans:property name="authenticationFailureHandler" ref="restAuthenticationFailureHandler"/>
-        <beans:property name="authenticationSuccessHandler" ref="restAuthenticationSuccessHandler"/>
-        <beans:property name="filterProcessesUrl" value="/rest/login"/>
-        <beans:property name="usernameParameter" value="username"/>
-        <beans:property name="passwordParameter" value="password"/>
-        <beans:property name="postOnly" value="true"/>
-    </beans:bean>
+	<!-- Configures a custom login filter bean -->
+	<beans:bean id="loginFilter"
+		class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+		<beans:property name="authenticationManager" ref="authenticationManager" />
+		<beans:property name="authenticationFailureHandler"
+			ref="restAuthenticationFailureHandler" />
+		<beans:property name="authenticationSuccessHandler"
+			ref="restAuthenticationSuccessHandler" />
+		<beans:property name="filterProcessesUrl" value="/rest/login" />
+		<beans:property name="usernameParameter" value="username" />
+		<beans:property name="passwordParameter" value="password" />
+		<beans:property name="postOnly" value="true" />
+	</beans:bean>
 
-    <!-- Configures a custom authentication success handler that returns HTTP status code 200 -->
-    <beans:bean id="restAuthenticationSuccessHandler" class="br.com.viktor.javawebpoc.security.RestAuthenticationSuccessHandler"/>
+	<!-- Configures a custom authentication success handler that returns HTTP 
+		status code 200 -->
+	<beans:bean id="restAuthenticationSuccessHandler"
+		class="br.com.viktor.javawebpoc.security.RestAuthenticationSuccessHandler" />
 
-    <!-- Configures a custom authentication failure handler that returns HTTP status code 401 -->
-    <beans:bean id="restAuthenticationFailureHandler" class="br.com.viktor.javawebpoc.security.RestAuthenticationFailureHandler"/>
+	<!-- Configures a custom authentication failure handler that returns HTTP 
+		status code 401 -->
+	<beans:bean id="restAuthenticationFailureHandler"
+		class="br.com.viktor.javawebpoc.security.RestAuthenticationFailureHandler" />
 
-    <!-- Configures a custom logout success handler that returns HTTP status code 200 -->
-    <beans:bean id="restLogoutSuccessHandler" class="br.com.viktor.javawebpoc.security.RestLogoutSuccessHandler"/>
+	<!-- Configures a custom logout success handler that returns HTTP status 
+		code 200 -->
+	<beans:bean id="restLogoutSuccessHandler"
+		class="br.com.viktor.javawebpoc.security.RestLogoutSuccessHandler" />
 
-    <!-- Configures in-memory implementation of the UserDetailsService implementation -->
-    <authentication-manager alias="authenticationManager">
-        <authentication-provider>
-            <user-service>
-                <user name="user" password="password" authorities="ROLE_USER"/>
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>	
+	<!-- Configures in-memory implementation of the UserDetailsService implementation -->
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+			<user-service>
+				<user name="user" password="password" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
 
 </beans:beans>

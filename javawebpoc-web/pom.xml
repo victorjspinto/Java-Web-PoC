@@ -22,7 +22,7 @@
 		<spring.data.version>1.2.0.RELEASE</spring.data.version>
 		<spring.security.version>3.1.4.RELEASE</spring.security.version>
 	</properties>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>br.com.victor.javawebpoc</groupId>
@@ -155,7 +155,7 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.2.0.Final</version>
 		</dependency>
-		
+
 		<!-- H2 Database -->
 		<dependency>
 			<groupId>com.h2database</groupId>
