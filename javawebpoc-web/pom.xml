@@ -1,12 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
-		<groupId>br.com.victor.javawebpoc</groupId>
-		<artifactId>javawebpoc</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
+		<groupId>io.github.lordviktor.java-web-poc</groupId>
+		<artifactId>java-web-poc-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>javawebpoc-web</artifactId>
+
+	<groupId>io.github.lordviktor.java-web-poc</groupId>
+	<artifactId>webapp</artifactId>
 	<packaging>war</packaging>
 
 	<properties>
@@ -24,13 +28,13 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>br.com.victor.javawebpoc</groupId>
-			<artifactId>javawebpoc-html</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-			<classifier>resources</classifier>
-			<type>zip</type>
-		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>br.com.victor.javawebpoc</groupId> -->
+		<!-- <artifactId>javawebpoc-html</artifactId> -->
+		<!-- <version>0.0.1-SNAPSHOT</version> -->
+		<!-- <classifier>resources</classifier> -->
+		<!-- <type>zip</type> -->
+		<!-- </dependency> -->
 
 		<!-- New Relic -->
 		<dependency>
@@ -242,44 +246,6 @@
 	</dependencies>
 	<build>
 		<plugins>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0</version>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>2.5.1</version>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-					<encoding>UTF-8</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-eclipse-plugin</artifactId>
-				<version>2.8</version>
-				<configuration>
-					<wtpversion>2.0</wtpversion>
-					<downloadSources>true</downloadSources>
-					<downloadJavadocs>true</downloadJavadocs>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
-				<configuration>
-					<webResources>
-						<resource>
-							<directory>target/html</directory>
-						</resource>
-					</webResources>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
