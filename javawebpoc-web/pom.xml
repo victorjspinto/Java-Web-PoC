@@ -24,13 +24,13 @@
 	</properties>
 	
 	<dependencies>
-		<dependency>
-			<groupId>br.com.victor.javawebpoc</groupId>
-			<artifactId>javawebpoc-html</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		    <classifier>resources</classifier>
-		    <type>zip</type>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>br.com.victor.javawebpoc</groupId> -->
+<!-- 			<artifactId>javawebpoc-html</artifactId> -->
+<!-- 			<version>0.0.1-SNAPSHOT</version> -->
+<!-- 		    <classifier>resources</classifier> -->
+<!-- 		    <type>zip</type> -->
+<!-- 		</dependency> -->
 
 		<!-- BoneCP -->
 		<dependency>
@@ -260,19 +260,19 @@
 					<downloadJavadocs>true</downloadJavadocs>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.1.1</version>
-				<configuration>
-					<webResources>
-						<resource>
-							<directory>target/html</directory>
-						</resource>
-					</webResources>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-war-plugin</artifactId> -->
+<!-- 				<version>2.1.1</version> -->
+<!-- 				<configuration> -->
+<!-- 					<webResources> -->
+<!-- 						<resource> -->
+<!-- 							<directory>target/html</directory> -->
+<!-- 						</resource> -->
+<!-- 					</webResources> -->
+<!-- 					<failOnMissingWebXml>false</failOnMissingWebXml> -->
+<!-- 				</configuration> -->
+<!-- 			</plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-dependency-plugin</artifactId>
@@ -298,26 +298,26 @@
 			</plugin>
 
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-		            <execution>
-		                <id>unpack-html-resources</id>
-		                <goals>
-		                    <goal>unpack-dependencies</goal>
-		                </goals>
-		                <phase>generate-resources</phase>
-		                <configuration>
-		                    <outputDirectory>${project.build.directory}/html</outputDirectory>
-		                    <includeArtifacIds>javawebpoc-html</includeArtifacIds>
-		                    <includeGroupIds>${project.groupId}</includeGroupIds>
-		                    <excludeTransitive>true</excludeTransitive>
-		                    <excludeTypes>pom</excludeTypes>
-		                </configuration>
-		            </execution>
-		        </executions>
-			</plugin>
+<!-- 			<plugin> -->
+<!-- 				<groupId>org.apache.maven.plugins</groupId> -->
+<!-- 				<artifactId>maven-dependency-plugin</artifactId> -->
+<!-- 				<executions> -->
+<!-- 		            <execution> -->
+<!-- 		                <id>unpack-html-resources</id> -->
+<!-- 		                <goals> -->
+<!-- 		                    <goal>unpack-dependencies</goal> -->
+<!-- 		                </goals> -->
+<!-- 		                <phase>generate-resources</phase> -->
+<!-- 		                <configuration> -->
+<!-- 		                    <outputDirectory>${project.build.directory}/html</outputDirectory> -->
+<!-- 		                    <includeArtifacIds>javawebpoc-html</includeArtifacIds> -->
+<!-- 		                    <includeGroupIds>${project.groupId}</includeGroupIds> -->
+<!-- 		                    <excludeTransitive>true</excludeTransitive> -->
+<!-- 		                    <excludeTypes>pom</excludeTypes> -->
+<!-- 		                </configuration> -->
+<!-- 		            </execution> -->
+<!-- 		        </executions> -->
+<!-- 			</plugin> -->
 		</plugins>
 	</build>
 </project>
