@@ -1,13 +1,13 @@
 package br.com.viktor.javawebpoc.validation.util;
 
+import io.github.lordviktor.javawebpoc.core.l10n.MessageKey;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
 import org.springframework.context.MessageSource;
 import org.springframework.validation.ObjectError;
-
-import br.com.viktor.javawebpoc.l10n.MessageKey;
 
 public class CustomObjectError extends ObjectError {
 

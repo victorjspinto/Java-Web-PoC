@@ -1,5 +1,7 @@
 package br.com.viktor.javawebpoc.validation;
 
+import io.github.lordviktor.javawebpoc.core.l10n.MessageKey;
+
 import org.springframework.util.StringUtils;
 import org.springframework.validation.AbstractBindingResult;
 import org.springframework.validation.Errors;
@@ -7,7 +9,6 @@ import org.springframework.validation.ObjectError;
 import org.springframework.validation.Validator;
 
 import br.com.viktor.javawebpoc.entity.base.AbstractEntity;
-import br.com.viktor.javawebpoc.l10n.MessageKey;
 import br.com.viktor.javawebpoc.validation.util.CustomObjectError;
 import br.com.viktor.javawebpoc.validation.util.ErrorCode;
 

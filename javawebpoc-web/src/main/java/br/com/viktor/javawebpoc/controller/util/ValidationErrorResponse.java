@@ -1,5 +1,7 @@
 package br.com.viktor.javawebpoc.controller.util;
 
+import io.github.lordviktor.javawebpoc.core.exception.ErrorResponse;
+
 import java.util.Collections;
 import java.util.List;
 
