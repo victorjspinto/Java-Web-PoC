@@ -11,7 +11,7 @@
 
 	<properties>
 		<source.jdk.version>1.7</source.jdk.version>
-		<source.encoding>UTF-8</source.encoding>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<build>
@@ -29,16 +29,12 @@
 					<configuration>
 						<source>${source.jdk.version}</source>
 						<target>${source.jdk.version}</target>
-						<encoding>${source.encoding}</encoding>
 					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
 					<version>2.7</version>
-					<configuration>
-						<encoding>${source.encoding}</encoding>
-					</configuration>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -66,7 +62,7 @@
 				<version>3.3</version>
 				<configuration>
 					<linkXref>true</linkXref>
-					<sourceEncoding>${source.encoding}</sourceEncoding>
+					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 					<targetJdk>${source.jdk.version}</targetJdk>
 				</configuration>
 				<reportSets>
