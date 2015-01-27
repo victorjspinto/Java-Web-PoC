@@ -3,7 +3,7 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/security
- 		http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+ 		http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<!-- Configure to protect /rest/** and do auth on /rest/login. This API respond 401 and 200 for auth success and error -->
 
