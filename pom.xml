@@ -22,6 +22,14 @@
 		<module>javawebpoc-web</module>
 	</modules>
 
+	<distributionManagement>
+		<downloadUrl>http://lordviktor.github.io/Java-Web-PoC</downloadUrl>
+		<site>
+			<id>Github Pages</id>
+			<url>http://lordviktor.github.io/Java-Web-PoC</url>
+		</site>
+	</distributionManagement>
+
 	<properties>
 		<spring.version>3.2.4.RELEASE</spring.version>
 		<slf4j.version>1.7.10</slf4j.version>
