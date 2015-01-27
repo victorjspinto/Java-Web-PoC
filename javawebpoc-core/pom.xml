@@ -12,13 +12,20 @@
 	<artifactId>java-web-poc-core</artifactId>
 	<packaging>jar</packaging>
 
+	<scm>
+		<url>http://lordviktor.github.io/Java-Web-PoC</url>
+		<connection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</connection>
+		<developerConnection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<dependencies>
 		<dependency>
 			<groupId>${project.groupId}</groupId>
 			<artifactId>java-web-poc-persistence</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-	
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
@@ -33,4 +40,5 @@
 		</dependency>
 	</dependencies>
 
+	<name>Java Web PoC - Core Layer</name>
 </project>

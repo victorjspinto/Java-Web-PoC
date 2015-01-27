@@ -12,6 +12,13 @@
 	<artifactId>java-web-poc-persistence</artifactId>
 	<packaging>jar</packaging>
 
+	<scm>
+		<url>http://lordviktor.github.io/Java-Web-PoC</url>
+		<connection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</connection>
+		<developerConnection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<properties>
 		<jpa.version>1.0</jpa.version>
 		<hibernate.version>4.1.4.Final</hibernate.version>
@@ -61,4 +68,5 @@
 			<version>5.1.6</version>
 		</dependency>
 	</dependencies>
+	<name>Java Web PoC - Persistence Layer</name>
 </project>

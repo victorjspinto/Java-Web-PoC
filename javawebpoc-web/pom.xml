@@ -9,6 +9,13 @@
 		<version>1.0.0-SNAPSHOT</version>
 	</parent>
 
+	<scm>
+		<url>http://lordviktor.github.io/Java-Web-PoC</url>
+		<connection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</connection>
+		<developerConnection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
 	<artifactId>java-web-poc-webapp</artifactId>
 	<packaging>war</packaging>
 
@@ -220,4 +227,5 @@
 			<!-- </plugin> -->
 		</plugins>
 	</build>
+	<name>Java Web PoC - WebApp Layer</name>
 </project>

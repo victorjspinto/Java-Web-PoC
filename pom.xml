@@ -21,6 +21,26 @@
 		<module>javawebpoc-core</module>
 		<module>javawebpoc-web</module>
 	</modules>
+	
+	<name>Java Web PoC</name>
+	<url>http://java-web-poc.herokuapp.com</url>
+	<description>Java web technologies Proof of Concept</description>
+	
+	<issueManagement>
+		<system>Github Issue Manager</system>
+		<url>https://github.com/lordviktor/Java-Web-PoC/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Codeship.com</system>
+		<url>https://codeship.com/projects/8948</url>
+	</ciManagement>
+	
+	<scm>
+		<url>http://lordviktor.github.io/Java-Web-PoC</url>
+		<connection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</connection>
+		<developerConnection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
 
 	<distributionManagement>
 		<downloadUrl>http://lordviktor.github.io/Java-Web-PoC</downloadUrl>
@@ -29,6 +49,18 @@
 			<url>git:ssh://git@github.com/lordviktor/Java-Web-PoC.git?gh-pages#</url>
 		</site>
 	</distributionManagement>
+	
+	<developers>
+		<developer>
+			<name>Victor Jose Silva Pinto</name>
+			<email>victorjosesilvapinto@hotmail.com</email>
+			<roles>
+				<role>
+					Developer
+				</role>
+			</roles>
+		</developer>
+	</developers>
 
 	<properties>
 		<spring.version>3.2.4.RELEASE</spring.version>
@@ -79,5 +111,4 @@
 			<version>${slf4j.version}</version>
 		</dependency>
 	</dependencies>
-
 </project>
