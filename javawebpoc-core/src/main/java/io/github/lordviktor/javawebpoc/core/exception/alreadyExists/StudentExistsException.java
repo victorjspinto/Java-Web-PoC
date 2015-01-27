@@ -1,7 +1,7 @@
 package io.github.lordviktor.javawebpoc.core.exception.alreadyExists;
 
 import io.github.lordviktor.javawebpoc.core.l10n.MessageKey;
-import br.com.viktor.javawebpoc.entity.Student;
+import io.github.lordviktor.javawebpoc.persistence.entity.Student;
 
 public class StudentExistsException extends AlreadyExistsException {
 

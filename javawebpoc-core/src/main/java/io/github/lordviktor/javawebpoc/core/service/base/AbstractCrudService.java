@@ -4,12 +4,11 @@ import io.github.lordviktor.javawebpoc.core.exception.alreadyExists.AlreadyExist
 import io.github.lordviktor.javawebpoc.core.exception.invalidArgument.InvalidArgumentException;
 import io.github.lordviktor.javawebpoc.core.exception.invalidArgument.NullArgumentException;
 import io.github.lordviktor.javawebpoc.core.exception.notFound.NotFoundException;
+import io.github.lordviktor.javawebpoc.persistence.entity.base.AbstractEntity;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import br.com.viktor.javawebpoc.entity.base.AbstractEntity;
 
 public abstract class AbstractCrudService<T extends AbstractEntity> {
 

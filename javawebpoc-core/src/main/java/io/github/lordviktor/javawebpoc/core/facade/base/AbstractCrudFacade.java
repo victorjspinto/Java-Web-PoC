@@ -5,10 +5,9 @@ import io.github.lordviktor.javawebpoc.core.exception.invalidArgument.InvalidArg
 import io.github.lordviktor.javawebpoc.core.exception.invalidArgument.NullArgumentException;
 import io.github.lordviktor.javawebpoc.core.exception.notFound.NotFoundException;
 import io.github.lordviktor.javawebpoc.core.service.base.AbstractCrudService;
+import io.github.lordviktor.javawebpoc.persistence.entity.base.AbstractEntity;
 
 import java.util.List;
-
-import br.com.viktor.javawebpoc.entity.base.AbstractEntity;
 
 public abstract class AbstractCrudFacade<T extends AbstractEntity> {
 	

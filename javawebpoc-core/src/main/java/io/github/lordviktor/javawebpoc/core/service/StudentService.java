@@ -3,13 +3,12 @@ package io.github.lordviktor.javawebpoc.core.service;
 import io.github.lordviktor.javawebpoc.core.exception.alreadyExists.StudentExistsException;
 import io.github.lordviktor.javawebpoc.core.exception.invalidArgument.InvalidArgumentException;
 import io.github.lordviktor.javawebpoc.core.service.base.AbstractCrudService;
+import io.github.lordviktor.javawebpoc.persistence.entity.Student;
+import io.github.lordviktor.javawebpoc.persistence.repository.StudentRepositoryContract;
 
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-
-import br.com.viktor.javawebpoc.entity.Student;
-import br.com.viktor.javawebpoc.repository.StudentRepositoryContract;
 
 @Service
 public class StudentService extends AbstractCrudService<Student> {

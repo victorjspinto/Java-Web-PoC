@@ -12,10 +12,10 @@
 
 	<context:annotation-config></context:annotation-config>
 
-	<context:component-scan base-package="br.com.viktor.javawebpoc.facade" />
-	<context:component-scan base-package="br.com.viktor.javawebpoc.service" />
-	<context:component-scan base-package="br.com.viktor.javawebpoc.repository" />
-	<context:component-scan base-package="br.com.viktor.javawebpoc.controller" />
-	<context:component-scan base-package="br.com.viktor.javawebpoc.validation" />
+	<context:component-scan base-package="io.github.lordviktor.javawebpoc.core.facade" />
+	<context:component-scan base-package="io.github.lordviktor.javawebpoc.core.service" />
+	<context:component-scan base-package="io.github.lordviktor.javawebpoc.persistence.repository" />
+	<context:component-scan base-package="io.github.lordviktor.javawebpoc.webapp.controller" />
+	<context:component-scan base-package="io.github.lordviktor.javawebpoc.webapp.validation" />
 
 </beans>
