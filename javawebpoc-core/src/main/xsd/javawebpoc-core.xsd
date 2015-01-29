@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://javawebpoc.lordviktor.github.io/core"
+	xmlns:tns="http://javawebpoc.lordviktor.github.io/core"
+	elementFormDefault="qualified">
+
+	<element name="newStudent" type="tns:newStudent"></element>
+
+	<complexType name="newStudent">
+		<sequence>
+			<element name="name" minOccurs="1" maxOccurs="1"
+				type="tns:basicString">
+			</element>
+			<element name="teste" type="boolean"></element>
+		</sequence>
+	</complexType>
+
+	<simpleType name="basicString">
+		<restriction base="string">
+			<maxLength value="30"></maxLength>
+		</restriction>
+	</simpleType>
+</schema>
