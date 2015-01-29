@@ -155,6 +155,15 @@
 	</dependencies>
 	<build>
 		<plugins>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<configuration>
+					<systemProperties>
+						<org.jboss.logging.Provider>slf4j</org.jboss.logging.Provider>
+					</systemProperties>
+				</configuration>
+			</plugin>
 			<!-- <plugin> -->
 			<!-- <groupId>org.apache.maven.plugins</groupId> -->
 			<!-- <artifactId>maven-war-plugin</artifactId> -->
