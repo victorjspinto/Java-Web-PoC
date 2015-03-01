@@ -13,6 +13,6 @@
 				<value>l10n/javawebpocValidation</value>			
 			</array>
 		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
 	</bean>
-	
 </beans>

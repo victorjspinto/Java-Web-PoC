@@ -5,6 +5,8 @@ import java.util.Locale;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -14,6 +16,9 @@ import br.com.viktor.javawebpoc.exception.JavaWebPoCException;
 import br.com.viktor.javawebpoc.exception.alreadyExists.AlreadyExistsException;
 import br.com.viktor.javawebpoc.exception.invalidArgument.InvalidArgumentException;
 import br.com.viktor.javawebpoc.exception.notFound.NotFoundException;
+import br.com.viktor.javawebpoc.l10n.MessageKey;
+
+import com.fasterxml.jackson.core.JsonParseException;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -53,4 +58,25 @@ public class GlobalExceptionHandler {
 		return response;
 	}
 		
+	@ExceptionHandler(HttpRequestMethodNotSupportedException.class)
+	@ResponseStatus(value = HttpStatus.NOT_IMPLEMENTED)
+	@ResponseBody
+	public ErrorResponse jsonErrorHandler(HttpRequestMethodNotSupportedException ex, Locale locale){
+		ErrorResponse response = new ErrorResponse();
+		response.setMessage(messageSource.getMessage(MessageKey.METHODNOTSUPPORTED_EXCEPTION.getMessageKey(), new Object[]{}, locale));
+		return response;
+	}
+	
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	@ResponseStatus(value = HttpStatus.BAD_REQUEST)
+	@ResponseBody
+	public ErrorResponse httpMessageInvalidErrorHandler(HttpMessageNotReadableException ex, Locale locale){
+		if(ex.getCause() instanceof JsonParseException){
+			ErrorResponse response = new ErrorResponse(); 
+			response.setMessage(messageSource.getMessage(MessageKey.JSONBADREQUEST_EXCEPTION.getMessageKey(), new Object[]{}, locale));
+			return response;
+		}
+		return null;
+	}
+	
 }
