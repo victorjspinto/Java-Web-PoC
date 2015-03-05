@@ -31,4 +31,20 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  })
+
+  // global route resolve for authentication.
+  .config(function($routeProvider) {
+    var globalRouteResolver = {
+      checkAuth: ['authenticationservice', function(authenticationservice) {
+        return authenticationservice.checkAuth();
+      }]
+    };
+
+    var when = $routeProvider.when;
+    $routeProvider.when = function(path, params) {
+      params.resolve = (params.resolve) ? params.resolve : {};
+      angular.extend(params.resolve, globalRouteResolver);
+      return when(path, params);
+    };
+  })
