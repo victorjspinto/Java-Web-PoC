@@ -72,22 +72,50 @@ module.exports = function (grunt) {
         hostname: 'localhost',
         livereload: 35729
       },
+      heroku: {
+        proxies: [
+          {
+            context: '/api/v1',
+            host: 'gtplace-test.herokuapp.com',
+            port: 80,
+            https: false,
+          }
+        ]
+      },
+      local: {
+        proxies: [
+          {
+            context: '/api/v1',
+            host: 'gtplace.dev',
+            port: 80,
+            https: false,
+          }
+        ]
+      },
       livereload: {
         options: {
           open: true,
-          middleware: function (connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use(
-                '/bower_components',
-                connect.static('./bower_components')
-              ),
-              connect().use(
-                '/app/styles',
-                connect.static('./app/styles')
-              ),
-              connect.static(appConfig.app)
-            ];
+          middleware: function (connect, options) {
+            // Setup the proxy
+            var middlewares = [require('grunt-connect-proxy/lib/utils').proxyRequest];
+
+            // Serve static files.
+            middlewares.push(connect.static('.tmp'));
+            middlewares.push(connect().use(
+              '/bower_components',
+              connect.static('./bower_components')
+            ));
+            middlewares.push(connect().use(
+              '/app/styles',
+              connect.static('./app/styles')
+            ));
+            middlewares.push(connect.static(appConfig.app));
+
+            // Make directory browse-able.
+            var directory = options.directory || options.base[options.base.length - 1];
+            middlewares.push(connect.directory(directory));
+
+            return middlewares;
           }
         }
       },
@@ -425,15 +453,23 @@ module.exports = function (grunt) {
     if (target === 'dist') {
       return grunt.task.run(['build', 'connect:dist:keepalive']);
     }
-
-    grunt.task.run([
+    var tasks = [
       'clean:server',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
       'connect:livereload',
       'watch'
-    ]);
+    ]
+
+    if(target === 'heroku') {
+      tasks.unshift('configureProxies:heroku');
+    } else {
+      tasks.unshift('configureProxies:local');
+    }
+
+
+    grunt.task.run(tasks);
   });
 
   grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
