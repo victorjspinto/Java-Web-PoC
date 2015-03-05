@@ -18,7 +18,8 @@ module.exports = function (grunt) {
   // Configurable paths for the application
   var appConfig = {
     app: require('./bower.json').appPath || 'app',
-    dist: 'dist'
+    dist: 'dist',
+    temp: '.tmp'
   };
 
   // Define the configuration for all the tasks
@@ -368,12 +369,14 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'less:development',
         'copy:styles'
       ],
       test: [
         'copy:styles'
       ],
       dist: [
+        'less:production',
         'copy:styles',
         'imagemin',
         'svgmin'
@@ -385,6 +388,34 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'test/karma.conf.js',
         singleRun: true
+      }
+    },
+
+    less: {
+      development: {
+        // options: {
+        //   paths: ["assets/css"]
+        // },
+        files: {
+          '<%= yeoman.temp %>/styles/style.css': '<%= yeoman.app %>/styles/style.less'
+        }
+      },
+      production: {
+        options: {
+          // paths: ["assets/css"],
+          // plugins: [
+          //   new (require('less-plugin-autoprefix'))({browsers: ["last 2 versions"]}),
+          //   new (require('less-plugin-clean-css'))(cleanCssOptions)
+          // ]
+          // ,
+          // modifyVars: {
+          //   imgPath: '"http://mycdn.com/path/to/images"',
+          //   bgColor: 'red'
+          // }
+        },
+        files: {
+          '<%= yeoman.temp %>/styles/style.css': '<%= yeoman.app %>/styles/style.less'
+        }
       }
     }
   });
