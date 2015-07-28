@@ -1,39 +1,120 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>br.com.victor.javawebpoc</groupId>
-  <artifactId>javawebpoc</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <modules>
-    <module>javawebpoc-html</module>
-  	<module>javawebpoc-web</module>
-  </modules>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
- <repositories>
-    <repository>
-      <id>people.apache.snapshots</id>
-      <url>http://repository.apache.org/content/groups/snapshots-group/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
+	<modelVersion>4.0.0</modelVersion>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>apache.snapshots</id>
-      <name>Apache Snapshots</name>
-      <url>http://repository.apache.org/content/groups/snapshots-group/</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
-  
+	<parent>
+		<groupId>io.github.lordviktor</groupId>
+		<artifactId>java-web-parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>java-web-parent/pom.xml</relativePath>
+	</parent>
+
+	<groupId>io.github.lordvikto.java-web-poc</groupId>
+	<artifactId>java-web-poc-parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<!-- <module>javawebpoc-html</module> -->
+		<module>javawebpoc-persistence</module>
+		<module>javawebpoc-core</module>
+		<module>javawebpoc-web</module>
+	</modules>
+
+	<name>Java Web PoC</name>
+	<url>http://java-web-poc.herokuapp.com</url>
+	<description>Java web technologies Proof of Concept</description>
+
+	<issueManagement>
+		<system>Github Issue Manager</system>
+		<url>https://github.com/lordviktor/Java-Web-PoC/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Codeship.com</system>
+		<url>https://codeship.com/projects/8948</url>
+	</ciManagement>
+
+	<scm>
+		<url>http://lordviktor.github.io/Java-Web-PoC</url>
+		<connection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</connection>
+		<developerConnection>scm:git:git@github.com:lordviktor/Java-Web-PoC.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+	<distributionManagement>
+		<downloadUrl>http://lordviktor.github.io/Java-Web-PoC</downloadUrl>
+		<site>
+			<id>gh-pages</id>
+			<url>git:ssh://git@github.com/lordviktor/Java-Web-PoC.git?gh-pages#</url>
+		</site>
+	</distributionManagement>
+
+	<developers>
+		<developer>
+			<name>Victor Jose Silva Pinto</name>
+			<email>victorjosesilvapinto@hotmail.com</email>
+			<roles>
+				<role>
+					Developer
+				</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<properties>
+		<spring.version>4.1.4.RELEASE</spring.version>
+		<slf4j.version>1.7.10</slf4j.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.3</version>
+				<dependencies>
+					<dependency>
+						<groupId>net.trajano.wagon</groupId>
+						<artifactId>wagon-git</artifactId>
+						<version>2.0.0</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jul-to-slf4j</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+	</dependencies>
 </project>
